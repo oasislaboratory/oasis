@@ -1,0 +1,16 @@
+# Graph Browser status
+
+## 2026-10-28 — initial CTO decomposition
+
+- Status: ongoing. Assessor: CTO agent; exact model identifier unavailable.
+- Selected: `graphbrowser/objective.md`, the sole unfinished browser leaf at [4635b40](https://github.com/oasislaboratory/oasis/commit/4635b40da1a33270c48d86ba97117c4117ba06ed). Introduced in [2ce6d17](https://github.com/oasislaboratory/oasis/commit/2ce6d178333f6e6d78ff30ac5ca37c2c719ee0e0); no age tie.
+- Context/overlap: read current default branch, complete non-truncated tree, AGENTS.md, README, root and branch objectives, Graph Lang objective, and browser path history. No browser child assignments, status logs, or active-work markers were present. This does not prove that no external worker is active. Recheck browser subtree and latest head before publishing; preserve sibling commits.
+- Scope: only `graphbrowser/` in oasislaboratory/oasis. No implementation-repository writes, deployment, outreach, or schedule changes.
+- Full-mandate one-run confidence: 10%; hosted editor/runtime/persistence and observed user validation exceed one bounded run. Metadata confidence 95% describes only the next action: author/check the decomposition. Progress remains null; no defensible end-to-end baseline supports a percentage.
+- Result: four planned Upper Leadership children: [workflow contract](01-workflow-contract/objective.md), [editor prototype](02-editor-prototype/objective.md), [runtime/environment](03-runtime-environment/objective.md), and [release validation](04-release-validation/objective.md). Coverage: define useful behavior, demonstrate editing, establish execution/storage boundaries, then prepare hosting and validation. Children may need later recursive decomposition.
+- Source-inspection evidence: Graph Lang pinned at [6e57551](https://github.com/oasislaboratory/graph-lang/tree/6e575510ea5346dad35d75b41d4492b05ed75548). Read `src/lib/graph.json`, root route, vertex loader, and package.json. Fixture has three named vertices and an adjacency matrix; root route lists vertices; vertex loader validates the URL index and returns the selected vertex. The inspected files do not demonstrate evaluation, graph editing, or durable writes. No product behavior was run or tested.
+- Child next-action confidence: 90%, 75%, 75%, 80%, respectively; conditional planning judgments, not measured completion rates or proof of delivery.
+- Verification plan: check all paths are scoped, all objectives have required metadata, founder prose is unchanged, and staged tree preserves other branches; read committed files back and inspect changed paths. This run verifies planning artifacts only.
+- Next eligible leaf: `01-workflow-contract/objective.md`. Stop after this decomposition; no child implementation was executed.
+- Cross-branch request for CIO: when available, link the documented runtime input/output/environment/error contract and corresponding executable evidence. This is a dependency request, not permission to change Graph Lang or a claim of runtime readiness. Contract/fixture work can proceed without it.
+- Founder decision: none needed to begin the workflow contract. Hosting, durable backend choice, and any deployment/access commitments will be presented concretely before application.
