@@ -43,5 +43,29 @@ add('bad-input','R3 R4',request(input=9007199254740992),err('invalid_request'),'
 add('index-before-execution','R8',request(path=[0,1,3],budget=0),err('unknown_reference'),'All indices checked before first budget check')
 g=deepcopy(G);g['matrix'][0].pop()
 add('graph-before-request','R1 R8',request(graph=g,budget=True),err('invalid_graph'),'Graph validation precedes request validation')
+# Exact-limit and just-outside cases; literal expectations remain candidate claims.
+for n in (64,65):
+    g=dict(version='p0',labels=['v']*n,matrix=[[None]*n for _ in range(n)])
+    add(f'graph-size-{n}','R1 R4',request(graph=g,path=[0],budget=0),ok(2,0) if n==64 else err('invalid_graph'),'Maximum 64 vertices; identity needs no edge')
+for n in (128,129):
+    g=deepcopy(G);g['labels'][0]='a'*n
+    add(f'label-length-{n}','R1',request(graph=g,path=[0]),ok(2,0) if n==128 else err('invalid_graph'),'Label scalar limit is 128')
+    g=deepcopy(G);g['matrix'][0][1]='x'*n
+    add(f'edge-length-{n}','R1 R5',request(graph=g,path=[0,1]),err('unknown_reference',at=0) if n==128 else err('invalid_graph'),'Valid-length unknown name reaches lookup; overlong name fails graph validation')
+g=deepcopy(G);g['labels'][0]='\U0001f431'*128
+add('unicode-scalar-length','R1',request(graph=g,path=[0]),ok(2,0),'128 non-BMP scalar values, not 256 UTF-16 code units')
+g=dict(version='p0',labels=['a'],matrix=[['id']])
+add('exact-path-budget-limit','R4 R6',request(graph=g,path=[0]*1025,budget=1024),ok(2,1024),'1025 vertices specify 1024 id applications')
+add('one-short-budget','R6 R8',request(graph=g,path=[0]*1025,budget=1023),err('budget_exhausted',steps=1023,at=1023),'Last edge fails after 1023 successes')
+for x in (-9007199254740991,9007199254740991):
+    add(f'carrier-identity-{x}','R3 R6',request(path=[0],input=x,budget=0),ok(x,0),'Both inclusive carrier endpoints survive identity')
+add('below-carrier','R3 R4',request(input=-9007199254740992),err('invalid_request'),'Below inclusive carrier minimum')
+g=deepcopy(G);g['matrix'][0][1]=''
+add('empty-edge-name','R1',request(graph=g),err('invalid_graph'),'Present edge name must be nonempty')
+g=deepcopy(G);g['matrix'][0][1]=True
+add('boolean-edge','R1',request(graph=g),err('invalid_graph'),'Boolean adjacency is not an executable edge name')
+g=deepcopy(G);g['labels'][0]=''
+add('empty-label','R1 R2',request(graph=g,path=[0]),ok(2,0),'Empty label allowed; identity is index-based')
+add('negative-budget','R4',request(budget=-1),err('invalid_request'),'Budget minimum is zero')
 manifest=dict(schema_version=1,disposition='candidate',contract_commit='4fc03a76c8f4faa7014173deba86c348b08c3ab0',contract_sha256=hashlib.sha256((ROOT/'../02-minimal-semantics/contract.md').read_bytes()).hexdigest(),runtime_evidence='not_run',cases=cases)
 (ROOT/'fixtures.json').write_text(json.dumps(manifest,indent=2)+'\n')

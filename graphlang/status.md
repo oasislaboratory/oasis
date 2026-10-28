@@ -37,3 +37,8 @@
 - Executed package checks and ten mock-harness self-tests pass; [verification](03-conformance-handoff/verification.json). No Graph Lang evaluator or product behavior tested. Source head unchanged; no source/sibling/shared-policy/schedule writes.
 - Assessor Codex (exact runtime model identifier unavailable); confidence 80% for this bounded increment and the next boundary-fixture review. Leaf remains in_progress and progress null: raw transport ambiguities and coverage gaps remain, and P0 is not adopted. Continuing mandate remains ongoing with null progress.
 - Next: close candidate transport/boundary gaps, then reassess; 04 may use this candidate protocol for documentation review without implying runtime conformance. Existing founder adoption decision remains open; no new decision required for further candidate preparation.
+
+## 2026-10-28 — conformance boundary and capture integrity increment
+
+- Advanced [03](03-conformance-handoff/objective.md) with 16 additional boundary fixtures (42 total) and stricter evidence JSON/suite matching. [Verification](03-conformance-handoff/verification.json): package check and 17 harness self-tests pass; no runtime executed.
+- Leaf remains in_progress with null progress; mandate ongoing/null. Source head unchanged. Next: candidate raw transport/error and integer-lexical proposal; adoption remains pending. No new founder decision, source/sibling edits or schedule changes.

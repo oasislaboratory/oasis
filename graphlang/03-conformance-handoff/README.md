@@ -1,14 +1,14 @@
 # Candidate P0 conformance handoff
 
-Disposition: candidate only. [P0 rules](../02-minimal-semantics/contract.md) at Oasis commit `4fc03a76c8f4faa7014173deba86c348b08c3ab0` are not founder-approved. Source head remains [6e57551](https://github.com/oasislaboratory/graph-lang/tree/6e575510ea5346dad35d75b41d4492b05ed75548) as of 2026-10-28. This package tests its own evidence machinery, not a Graph Lang runtime.
+Disposition: candidate only. [P0 rules](../02-minimal-semantics/contract.md) at Oasis commit `4fc03a76c8f4faa7014173deba86c348b08c3ab0` are not founder-approved. Source head remains [6e57551](https://github.com/oasislaboratory/graph-lang/tree/6e575510ea5346dad35d75b41d4492b05ed75548) as of 2042-10-28. This package tests its own evidence machinery, not a Graph Lang runtime.
 
 ## Input and output boundary
 
-[fixtures.json](fixtures.json) contains 26 authored request/expected-result pairs and rule mappings. Requests have exactly graph/path/input/budget/environment. Graph version is `p0`; immutable environment is `p0-int-v1`. Responses have either ok/value/steps or ok/code/steps/at, with the meanings and precedence in P0. No environment mutation, ambient lookup, implicit adjacency conversion or persistence is permitted by this candidate.
+[fixtures.json](fixtures.json) contains 42 authored request/expected-result pairs and rule mappings. Requests have exactly graph/path/input/budget/environment. Graph version is `p0`; immutable environment is `p0-int-v1`. Responses have either ok/value/steps or ok/code/steps/at, with the meanings and precedence in P0. No environment mutation, ambient lookup, implicit adjacency conversion or persistence is permitted by this candidate.
 
 Each fixture has a derivation independent of any implementation. Positive cases cover composition, zero-edge identity, finite cycles, explicit identity and duplicate labels. Negative cases cover malformed representation, unknown vertex/function, primitive overflow, exhausted budget, invalid requests and error-precedence collisions. R1–R8 all have mapped cases; rule coverage does not imply exhaustive boundary coverage.
 
-The fixture builder is a reproducible authoring script with literal expected outcomes, not an evaluator. The checker validates package structure/hash and compares captured results with strict JSON types. It does not establish that authored expectations are mathematically correct, run a runtime, attest provenance, or detect hidden side effects.
+The fixture builder is a reproducible authoring script with literal expected outcomes, not an evaluator. The checker validates package structure/hash and compares captured results with strict JSON types. Evidence files reject duplicate JSON keys and non-JSON NaN/Infinity constants. Captures must pin both the contract and the canonical suite digest printed by verify.py; changing requests, expected results, rule mappings or derivations invalidates an older capture, even if IDs stay the same. This digest detects mismatch, not malicious fabrication. It does not establish that authored expectations are mathematically correct, run a runtime, attest provenance, or detect hidden side effects.
 
 ## Reproduce
 
@@ -33,17 +33,18 @@ A capture file must contain:
   "command": "exact invocation command",
   "environment": "OS and runtime versions",
   "contract_sha256": "copy the pinned contract digest",
+  "suite_sha256": "copy suite_sha256 printed by verify.py",
   "results": [{"id": "P1", "result": {"ok": true, "value": -3, "steps": 2}}]
 }
 ```
 
-The illustrative single result is incomplete: include each of the 26 IDs exactly once. Then run `python3 graphlang/03-conformance-handoff/verify.py --responses capture.json`. Exit zero means captured results match; it does not independently attest that a runtime produced them. Attach raw logs and inspect the adapter. Self-tests use `mock_harness_test` and retain runtime=`not_run`.
+The illustrative single result is incomplete: include each of the 42 IDs exactly once. Then run `python3 graphlang/03-conformance-handoff/verify.py --responses capture.json`. Exit zero means captured results match; it does not independently attest that a runtime produced them. Attach raw logs and inspect the adapter. Self-tests use `mock_harness_test` and retain runtime=`not_run`.
 
 ## Remaining acceptance gaps
 
 - No accepted contract or actual runtime capture exists. The leaf remains in progress, with progress percentage unset; candidate preparation is useful but does not meet the accepted-contract wording of criterion 2.
 - Byte-level cases remain to specify: duplicate keys, malformed JSON, Unicode decoding/scalar validity, oversized transport and parser-depth exhaustion. P0 does not assign every parse/envelope failure an unambiguous code; resolve this before freezing a transport oracle.
-- Additional boundary fixtures are needed for label/edge length, maximum graph size, exact path/budget limits and integer lexical forms. The current suite is a bounded seed, not exhaustive conformance.
+- Exact/over-limit graph sizes (64/65), label and edge lengths (128/129), non-BMP scalar counting, path/budget limits (1025 vertices/1024 steps), both carrier endpoints and invalid booleans/empty edge names now have fixtures. Integer lexical forms and byte-level cases remain open. The suite is bounded, not exhaustive conformance.
 - External cancellation, wall-clock deadlines, adapter unavailability, persistent state and UI error rendering are separate integration tests. No hosting, storage durability or customer outcome follows from these checks.
 
 ## Implementation request and CTO handoff
@@ -57,8 +58,12 @@ Local request to CTO: [the current boundary draft](../../graphbrowser/03-runtime
 | Objective criterion | Evidence and limit |
 | --- | --- |
 | Versioned I/O and environment | P0 plus concrete fixtures; candidate only |
-| Required behavioral cases | 26 expected outcomes; adoption and runtime evidence absent; raw-input coverage incomplete |
-| Reproducible checks and mapping | verify.py, ten harness self-tests, fixture rules/derivations; no evaluator executed |
+| Required behavioral cases | 42 expected outcomes; adoption and runtime evidence absent; raw-input coverage incomplete; value-level boundaries expanded |
+| Reproducible checks and mapping | verify.py, 17 harness self-tests, fixture rules/derivations; no evaluator executed |
 | Implementation handoff | Scoped request above with explicit gates and missing capabilities |
 
 [verification.json](verification.json) records executed package/harness checks. It is not runtime conformance evidence.
+
+## Evidence reader versus language transport
+
+Strict JSON reading here applies to fixture/capture evidence files only. It does not settle P0 transport semantics or test a runtime parser. Python integers and typed JSON comparison are evidence conventions, not a decision about whether wire inputs such as `2.0` or `2e0` denote valid language integers. A future transport proposal must resolve duplicate keys at different nesting levels, malformed/oversized input, Unicode failures, top-level envelope failures and exact numeric lexical handling before freezing their expected error codes. Do not silently promote evidence-reader behavior into language rules.

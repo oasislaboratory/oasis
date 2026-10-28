@@ -2,10 +2,10 @@
   "date": "2026-10-28",
   "python": "3.12.14",
   "package_check": "pass",
-  "cases": 26,
+  "cases": 42,
   "rules": 8,
-  "harness_tests": 10,
-  "harness_tests_passed": 10,
+  "harness_tests": 17,
+  "harness_tests_passed": 17,
   "runtime": "not_run",
   "evidence_kind": "package_and_mock_harness_only",
   "commands": [
@@ -15,6 +15,7 @@
   "limitations": [
     "No runtime invoked",
     "No accepted semantics",
-    "Raw transport and remaining boundary cases incomplete"
-  ]
+    "Raw transport and integer lexical rules unresolved"
+  ],
+  "suite_sha256": "e0db5e36bbf62a7a84f272ac4068e0b19570c8b55bc8c4970973e6a62575a899"
 }
