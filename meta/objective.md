@@ -1,4 +1,14 @@
-# Objective
+---
+role: COO/CFO
+status: ongoing
+progress_percent: null
+confidence_percent: null
+assessed_by: null
+assessed_on: null
+scope: "meta/"
+---
+
+# COO/CFO — Meta
 
 Evolve this OKR DAG into an effective system for directing Oasis and optimizing portfolios of agents and their work.
 
