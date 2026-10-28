@@ -1,0 +1,1 @@
+A user can load valid graphlang data and inspect vertex values, labels, and incoming and outgoing morphisms in the browser, including empty and nested graphs. Invalid input produces an actionable explanation, and the displayed structure agrees with graphlang's specification and shared examples.

@@ -1,0 +1,1 @@
+A user can create a graph and add, modify, and remove its vertices and morphisms, including supported nested values, through the browser. Every completed edit preserves graphlang's structural rules, and invalid edits explain the problem without losing the last valid graph.

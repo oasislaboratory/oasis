@@ -1,0 +1,1 @@
+A user can follow morphisms and enter and leave nested graphs while retaining their location and context. Every supported vertex location is directly addressable by URL, survives reload, and produces a clear result when the location does not exist.
