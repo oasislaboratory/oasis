@@ -1,0 +1,278 @@
+{
+  "schema_version": 1,
+  "source": {
+    "repository": "oasislaboratory/oasis",
+    "commit": "d385691583ea19ba51cc6b1cffc7607b9400d878"
+  },
+  "documents": [
+    {
+      "path": "AGENTS.md",
+      "content": "# Agent instructions\n\n## Direction and authority\n\nRead the root objective, README, selected objective, its ancestors, children, and linked dependencies. Preserve founder-authored objective text unless explicitly authorized to revise it. Keep communication concise.\n\nThe root is CEO, controlled by the founder. CIO owns graphlang/; CTO owns graphbrowser/; COO/CFO owns meta/. Further depths default to Upper Leadership, Senior Engineer, Junior Engineer, then Apprentice/Intern; deeper nodes retain Apprentice/Intern unless the founder defines another level. Titles describe responsibility, not separate people or automatically spawned agents.\n\nBefore writing, identify your assigned objective directory. Edit only files inside that directory and its descendants, including child objectives and local status logs. Read ancestors and siblings for context, but request their owner's changes through your local status log. A title or dependency link grants no additional write authority. Root/CEO assignment and edits to root AGENTS.md or README.md require explicit founder authorization; never infer root assignment from repository access. Existing children owned by other active agents require coordination before overlapping edits.\n\nGraph Lang source/docs live in oasislaboratory/graph-lang. An assignment here does not itself grant write authority in another repository. This repository coordinates objectives and evidence across the three branches.\n\n## Select and act\n\n1. Within your assigned subtree, select the oldest unfinished, unblocked leaf by the Git commit that introduced its objective.md; break ties by path. A leaf has no child objective folders. Missing status means unfinished.\n2. Estimate confidence in completing and verifying that leaf in one run. Record a short rationale; this is a judgment, not measured probability.\n3. If confidence is at least 50%, execute the bounded work and verify the result.\n4. Otherwise create two to four child folders, each with an objective.md and metadata. Each child should have >50% estimated confidence of being achievable through execution or further recursive decomposition. Explain why the set plausibly advances and covers the parent.\n5. Intermediate objectives may require later decomposition. Children need not make the parent achievable in one subsequent run. Product-market fit requires longitudinal evidence.\n6. Expand only the selected leaf in a run. Stop after decomposition; avoid speculative trees. If blocked, record the missing input and select another eligible leaf within your scope when possible.\n\n## Objective metadata\n\nEach objective.md starts with YAML fields:\n\n- role: responsibility title for its depth.\n- status: planned, in_progress, ongoing, blocked, completed, or cancelled.\n- progress_percent: 0–100 estimate against explicit acceptance criteria; null when no defensible baseline exists.\n- confidence_percent: 0–100 estimated chance of completing and verifying the stated next action in one run; null before assessment.\n- assessed_by: actual model identifier if available, otherwise an honest agent label; null before assessment.\n- assessed_on: assessment date in YYYY-MM-DD format; null before assessment.\n- scope: repository-relative directory containing this objective.\n\nKeep strategic mandates ongoing. Start bounded children planned; mark in_progress when work starts. Use blocked only for a concrete unmet prerequisite. Completed requires linked verification against the objective's acceptance criteria; cancelled means intentionally stopped.\n\nReassess percentages when working a node, with rationale and evidence in its local status.md. Distinguish estimated progress from next-action confidence. Do not invent precision, increase progress merely for creating children, or average child percentages without explicit weights and criteria. Continuing mandates can remain ongoing as individual milestones complete.\n\n## Evidence and learning\n\nKeep a brief status.md beside the selected objective: action assessed, confidence/progress rationale, result, verification links, and next dependency. objective.md metadata is the canonical current status; status.md supplies its supporting record. Distinguish plans, source inspection, tested behavior, and customer evidence. Parent owners reconcile their own status; child agents report evidence without editing ancestors.\n\nFor Meta experiments, define the hypothesis, baseline, variants, evaluation tasks, metric, budget, and stopping rule before running. Compare equivalent tasks under comparable budgets; record failures and cost as well as wins. Avoid selecting policies solely on their own self-reported scores.\n\nFounder retains vision and veto authority. Surface consequential direction changes for a decision. Follow the current task's authorization for repository writes; an objective alone does not authorize external outreach or financial transactions.\n\nFolder scope is an agent operating policy, not technical access enforcement. Do not claim GitHub prevents out-of-scope writes.\n\n## COO/CFO advisory authority\n\nCOO/CFO may review the entire OKR DAG and propose edits or alternative (forked) structures for any branch, the root objective, role boundaries, agent instructions, prompts, or workflow. This cross-tree advisory remit supports workflow research and controlled A/B testing; it does not expand direct write scope.\n\nStore proposals, patches, and alternative-tree fixtures under meta/, referencing the source commit and affected paths. Include the hypothesis, proposed changes, baseline/variant comparison, evidence or planned test, expected tradeoffs, and a clear proposed/approved/rejected disposition. Label simulations and untested variants honestly.\n\nFounder approval is required before applying a proposal outside meta/ or changing shared policies, permissions, prompts, or schedules. A proposed fork is an artifact or design under meta/, not authorization to create a GitHub fork or change the live tree. Chief of Staff should surface material proposals in its read-only dashboard.\n",
+      "git_blob_sha": "136e7b665c275e84ff01b016f7560610ee0a46ce"
+    },
+    {
+      "path": "README.md",
+      "content": "# Oasis\n\n[Root objective](objective.md): cultivate this OKR DAG into a startup reaching product-market fit for its olog / graph browser / IDE.\n\n| Role / branch | Responsibility |\n| --- | --- |\n| CIO / [Graph Lang](graphlang/objective.md) | Language, runtime, source, and documentation in the separate graph-lang repository. |\n| CTO / [Graph Browser](graphbrowser/objective.md) | Hosted dashboard / IDE with Graph Lang execution and a persistent database/environment. |\n| COO/CFO / [Meta](meta/objective.md) | The OKR DAG, agent portfolios, performance-based allocation, and experiments on the process itself. |\n\nEach objective folder is a node. Nested objective folders are key results that can themselves be decomposed. Use relative Markdown links for cross-branch dependencies and shared results; do not duplicate work or introduce dependency cycles.\n\nRead [AGENTS.md](AGENTS.md) before selecting or expanding work. These three branches are strategic objectives, not completed results or a claim that product-market fit is guaranteed.\n\n## Roles and status\n\nThe root is CEO, controlled by the founder. CIO owns Graph Lang; CTO owns Graph Browser; COO/CFO owns Meta. Deeper objective folders represent Upper Leadership → Senior Engineer → Junior Engineer → Apprentice/Intern. These are responsibility levels; create them only when useful objectives require decomposition.\n\nEvery objective carries YAML metadata: `role`, `status`, `progress_percent`, `confidence_percent`, `assessed_by`, `assessed_on`, and `scope`. Current strategic objectives are `ongoing`; percentages are `null` until assessed against evidence and a bounded next action.\n\nStatus: `planned` → `in_progress` → `completed`; use `ongoing` for continuing mandates, `blocked` for a missing prerequisite, and `cancelled` for intentionally stopped work.\n\nAgents may edit only their explicitly assigned objective folder and descendants. Ancestors and linked dependencies are readable; sibling changes go to their owner. Root/CEO assignment and shared policy changes require explicit founder authorization. This is an agent operating policy, not a GitHub permission boundary; technical isolation requires scoped tooling or separate review controls.\n",
+      "git_blob_sha": "24493442bd10b33f518c8c2d1c8b2ef9d3b33af8"
+    },
+    {
+      "path": "graphbrowser/01-workflow-contract/objective.md",
+      "content": "---\nrole: Upper Leadership\nstatus: planned\nprogress_percent: null\nconfidence_percent: 90\nassessed_by: \"CTO agent\"\nassessed_on: \"2026-10-28\"\nscope: \"graphbrowser/01-workflow-contract/\"\n---\n\n# Upper Leadership — Define a falsifiable OKR browser workflow\n\nSpecify the smallest useful Graph Browser increment using Oasis's OKR DAG as a concrete workflow. Produce a pinned, read-only input fixture and acceptance scenarios within this folder.\n\nAcceptance criteria:\n- Identify the initial user, task, and hypothesized benefit as assumptions to test, not established demand.\n- Define graph/objective identity, parent/child and cross-dependency links, objective/status metadata, and preservation of source text for the fixture.\n- Describe an end-to-end task: open the DAG, inspect a leaf and its evidence/dependencies, propose an edit, save it to a test environment, reload, and compare the result with the intended change.\n- Specify deterministic pass/fail checks, malformed/missing-data behavior, and what an observed usability result would support or refute.\n- Separate fixture/simulation acceptance from real runtime, durable storage, hosting, and customer validation. List required interfaces and unresolved decisions without committing to a provider.\n\nNext action: author and validate the fixture/scenarios against the pinned source. Confidence 90%; bounded specification and fixture checks fit one run.\n\n",
+      "git_blob_sha": "474760db3f0ec017d2f36d9c42437cf796c8fb58"
+    },
+    {
+      "path": "graphbrowser/02-editor-prototype/objective.md",
+      "content": "---\nrole: Upper Leadership\nstatus: planned\nprogress_percent: null\nconfidence_percent: 75\nassessed_by: \"CTO agent\"\nassessed_on: \"2026-10-28\"\nscope: \"graphbrowser/02-editor-prototype/\"\n---\n\n# Upper Leadership — Demonstrate the browser editing workflow\n\nBuild a local runnable prototype under this folder that satisfies the [workflow contract](../01-workflow-contract/objective.md), with clear separation between graph data and presentation.\n\nAcceptance criteria:\n- Provide reproducible startup instructions and a fixture-based graph explorer with objective details and dependency navigation.\n- Demonstrate a bounded edit, input validation, test-environment save/reload, and visible unsaved/error states against the contract.\n- Preserve node identity, source wording, and unrelated fields; make edits to fixture data only, not the live OKR repository.\n- Record actual verification results and limitations. Label every mock runtime or temporary storage adapter explicitly; prototype behavior does not establish production persistence or Graph Lang execution.\n- Keep artifacts in this folder; no deployment or external repository mutation.\n\nDependency: workflow contract and fixture must exist before implementation.\nNext action once eligible: choose a minimal local prototype slice or decompose it if the verified build is too large. Confidence 75% for that bounded next action; full implementation confidence requires inspection of the contract.\n\n",
+      "git_blob_sha": "b32b0fb45a7beae0685f8ad74170aab650da8cf2"
+    },
+    {
+      "path": "graphbrowser/03-runtime-environment/objective.md",
+      "content": "---\nrole: Upper Leadership\nstatus: planned\nprogress_percent: null\nconfidence_percent: 75\nassessed_by: \"CTO agent\"\nassessed_on: \"2026-10-28\"\nscope: \"graphbrowser/03-runtime-environment/\"\n---\n\n# Upper Leadership — Verify runtime and persistent environment boundaries\n\nDefine and verify the Graph Browser's integration with Graph Lang execution and a persistent database/environment. Coordinate against the [Graph Lang objective](../../graphlang/objective.md) using read-only inspection and local requests.\n\nAcceptance criteria:\n- Specify versioned graph input/output, environment lookup, execution result/error, and persistence adapter boundaries with executable fixture checks where feasible.\n- Distinguish graph representation, browser navigation, evaluation, and persistent state. Do not treat loading JSON as executing Graph Lang.\n- Verify real adapters when available; preserve requests and acceptance cases for missing runtime capabilities without claiming mock results as integration success.\n- Demonstrate save/reload durability at the declared storage boundary plus invalid input, failed-write, and conflicting-version behavior. State which restart/session failures the chosen boundary covers.\n- Keep runtime/storage proposals reversible and within this folder. Request founder decisions before consequential architecture or external access changes.\n\nDependency: [workflow contract](../01-workflow-contract/objective.md). A real-runtime verification milestone additionally depends on an available documented Graph Lang runtime.\nNext action once eligible: inspect required interfaces and create a bounded adapter/conformance plan or decompose its implementation. Confidence 75% for that next action; actual runtime readiness is unknown.\n\n",
+      "git_blob_sha": "838617ef8dcde05dde46e488876a9e508b8b4afd"
+    },
+    {
+      "path": "graphbrowser/04-release-validation/objective.md",
+      "content": "---\nrole: Upper Leadership\nstatus: planned\nprogress_percent: null\nconfidence_percent: 80\nassessed_by: \"CTO agent\"\nassessed_on: \"2026-10-28\"\nscope: \"graphbrowser/04-release-validation/\"\n---\n\n# Upper Leadership — Prepare hosted release and evidence-based validation\n\nPrepare a reviewable hosted release and validation experiment after the [prototype](../02-editor-prototype/objective.md) and [runtime/environment](../03-runtime-environment/objective.md) requirements are evidenced.\n\nAcceptance criteria:\n- Provide a reproducible build/check procedure, explicit hosting/storage/access assumptions, release prerequisites, and recovery/export plan.\n- Define a bounded usability experiment with the target workflow, baseline, observable success/failure criteria, budget, and stopping rule before collecting results.\n- Separate local verification from deployed behavior and customer observations. Record absent evidence honestly; a successful build is not product-market fit.\n- Deliver deployment-ready artifacts or a concrete deployment plan in this folder and identify founder approvals required for hosting and participant access.\n- Mark completed only when this preparation package is verified; actual deployment and outreach require separate authorization and follow-up objectives.\n\nDependency: the preceding prototype and integration packages; do not report hosted readiness while their acceptance requirements remain unmet.\nNext action once eligible: inspect the available evidence and author a bounded release/validation plan or decompose remaining preparation. Confidence 80% for that next action; no confidence estimate of customer adoption is claimed.\n\n",
+      "git_blob_sha": "2da24306d8ff577d3c4786ee8b703949ac21f7ba"
+    },
+    {
+      "path": "graphbrowser/objective.md",
+      "content": "---\nrole: CTO\nstatus: ongoing\nprogress_percent: null\nconfidence_percent: 95\nassessed_by: \"CTO agent\"\nassessed_on: \"2026-10-28\"\nscope: \"graphbrowser/\"\n---\n\n# CTO — Graph Browser\n\nDeliver a hosted Graph Browser: a dashboard and IDE for exploring, editing, and executing Graph Lang graphs within a persistent database/environment.\n\nMake Oasis's own OKR DAG a usable workflow in the browser, and validate the product through observed user behavior. Coordinate language/runtime dependencies with ../graphlang/.\n",
+      "git_blob_sha": "f20b03076fadee68fd5403cd24f6494b25b8b87a"
+    },
+    {
+      "path": "graphbrowser/status.md",
+      "content": "# Graph Browser status\n\n## 2026-10-28 — initial CTO decomposition\n\n- Status: ongoing. Assessor: CTO agent; exact model identifier unavailable.\n- Selected: `graphbrowser/objective.md`, the sole unfinished browser leaf at [4635b40](https://github.com/oasislaboratory/oasis/commit/4635b40da1a33270c48d86ba97117c4117ba06ed). Introduced in [2ce6d17](https://github.com/oasislaboratory/oasis/commit/2ce6d178333f6e6d78ff30ac5ca37c2c719ee0e0); no age tie.\n- Context/overlap: read current default branch, complete non-truncated tree, AGENTS.md, README, root and branch objectives, Graph Lang objective, and browser path history. No browser child assignments, status logs, or active-work markers were present. This does not prove that no external worker is active. Recheck browser subtree and latest head before publishing; preserve sibling commits.\n- Scope: only `graphbrowser/` in oasislaboratory/oasis. No implementation-repository writes, deployment, outreach, or schedule changes.\n- Full-mandate one-run confidence: 10%; hosted editor/runtime/persistence and observed user validation exceed one bounded run. Metadata confidence 95% describes only the next action: author/check the decomposition. Progress remains null; no defensible end-to-end baseline supports a percentage.\n- Result: four planned Upper Leadership children: [workflow contract](01-workflow-contract/objective.md), [editor prototype](02-editor-prototype/objective.md), [runtime/environment](03-runtime-environment/objective.md), and [release validation](04-release-validation/objective.md). Coverage: define useful behavior, demonstrate editing, establish execution/storage boundaries, then prepare hosting and validation. Children may need later recursive decomposition.\n- Source-inspection evidence: Graph Lang pinned at [6e57551](https://github.com/oasislaboratory/graph-lang/tree/6e575510ea5346dad35d75b41d4492b05ed75548). Read `src/lib/graph.json`, root route, vertex loader, and package.json. Fixture has three named vertices and an adjacency matrix; root route lists vertices; vertex loader validates the URL index and returns the selected vertex. The inspected files do not demonstrate evaluation, graph editing, or durable writes. No product behavior was run or tested.\n- Child next-action confidence: 90%, 75%, 75%, 80%, respectively; conditional planning judgments, not measured completion rates or proof of delivery.\n- Verification plan: check all paths are scoped, all objectives have required metadata, founder prose is unchanged, and staged tree preserves other branches; read committed files back and inspect changed paths. This run verifies planning artifacts only.\n- Next eligible leaf: `01-workflow-contract/objective.md`. Stop after this decomposition; no child implementation was executed.\n- Cross-branch request for CIO: when available, link the documented runtime input/output/environment/error contract and corresponding executable evidence. This is a dependency request, not permission to change Graph Lang or a claim of runtime readiness. Contract/fixture work can proceed without it.\n- Founder decision: none needed to begin the workflow contract. Hosting, durable backend choice, and any deployment/access commitments will be presented concretely before application.\n",
+      "git_blob_sha": "dbfd293c9cea387d18a608127c711c5b541f2e9b"
+    },
+    {
+      "path": "graphlang/01-source-baseline/objective.md",
+      "content": "---\nrole: Upper Leadership\nstatus: planned\nprogress_percent: null\nconfidence_percent: 90\nassessed_by: \"Codex (exact model identifier unavailable)\"\nassessed_on: \"2026-10-28\"\nscope: \"graphlang/01-source-baseline/\"\n---\n\n# Upper Leadership — Establish the documented and executable source baseline\n\nProduce a pinned, reproducible inventory of Graph Lang's documented claims and inspected behavior in oasislaboratory/graph-lang. Keep all deliverables here; source access is read-only.\n\nAcceptance criteria:\n- Record the inspected commit, applicable source policies, documentation/source entry points, declared commands, and available tests.\n- Map each foundation claim to a source path and classify it as documented, inspected, tested, or unsupported; distinguish graph navigation from program evaluation.\n- Identify model/representation ambiguities and missing executable evidence without prescribing unapproved semantics.\n- Record a prioritized implementation request list with concrete acceptance cases and scope/authorization dependencies.\n\nNext action: inspect the current implementation and write/check the evidence matrix. Confidence 90% for this bounded inspection, not for proving runtime readiness. No prerequisite blocks read-only baseline work.\n",
+      "git_blob_sha": "51cf0fa0d685ac794807d498281cabd34f316b0a"
+    },
+    {
+      "path": "graphlang/02-minimal-semantics/objective.md",
+      "content": "---\nrole: Upper Leadership\nstatus: planned\nprogress_percent: null\nconfidence_percent: 80\nassessed_by: \"Codex (exact model identifier unavailable)\"\nassessed_on: \"2026-10-28\"\nscope: \"graphlang/02-minimal-semantics/\"\n---\n\n# Upper Leadership — Specify a minimal graph computation contract\n\nDefine a small, explicit candidate language foundation grounded in the [source baseline](../01-source-baseline/objective.md). Mark candidate decisions as proposals until accepted; preserve founder direction.\n\nAcceptance criteria:\n- State graph objects and representation invariants, directedness, identity, allowed edges, and the distinction between data and executable structure.\n- Define the smallest coherent evaluation model, including inputs, outputs, environment lookup, errors, and termination/resource boundaries.\n- Provide hand-worked positive and negative examples with unambiguous expected outcomes, and explain how examples follow the rules.\n- Link each rule to current evidence or an explicit proposed change; record unresolved consequential choices for founder review.\n\nDependency: source baseline. Next action once eligible: draft/check one minimal contract or decompose it. Confidence 80% for that bounded next action; it does not claim that a language design can be validated in one run.\n",
+      "git_blob_sha": "4b591a6e71ec6601068c5a04d06193bab1cc4b61"
+    },
+    {
+      "path": "graphlang/03-conformance-handoff/objective.md",
+      "content": "---\nrole: Upper Leadership\nstatus: planned\nprogress_percent: null\nconfidence_percent: 80\nassessed_by: \"Codex (exact model identifier unavailable)\"\nassessed_on: \"2026-10-28\"\nscope: \"graphlang/03-conformance-handoff/\"\n---\n\n# Upper Leadership — Define executable conformance and integration acceptance\n\nTurn the [minimal semantics](../02-minimal-semantics/objective.md) into a bounded conformance specification and implementation handoff. Coordinate with the [Graph Browser runtime objective](../../graphbrowser/03-runtime-environment/objective.md) through local requests only.\n\nAcceptance criteria:\n- Specify versioned graph input/output, execution result/error, and environment boundaries with deterministic fixtures and expected outcomes.\n- Cover valid execution, malformed representation, unknown reference, evaluation failure, and termination/resource behavior as required by the accepted contract.\n- Define a reproducible verification command/protocol and map each fixture to the rule it checks; label reference/mock checks separately from real runtime results.\n- Request implementation in oasislaboratory/graph-lang with exact missing capabilities and acceptance criteria. Inspect/test real behavior only when available and authorized; never report fixture validation as runtime integration.\n\nDependency: minimal semantics. Next action once eligible: author a bounded conformance package or decompose it. Confidence 80% for that next action. Separate implementation-repository write authorization is required for source edits, not for this specification.\n",
+      "git_blob_sha": "6fe1c71b412544393929df4c68daaa3c876e5a1e"
+    },
+    {
+      "path": "graphlang/04-documentation-consistency/objective.md",
+      "content": "---\nrole: Upper Leadership\nstatus: planned\nprogress_percent: null\nconfidence_percent: 85\nassessed_by: \"Codex (exact model identifier unavailable)\"\nassessed_on: \"2026-10-28\"\nscope: \"graphlang/04-documentation-consistency/\"\n---\n\n# Upper Leadership — Establish documentation and executable example consistency\n\nPlan a traceable scientific literate programming foundation connecting mathematical definitions, worked examples, and verified implementation. Textbook/source edits remain in oasislaboratory/graph-lang and require separate write authorization.\n\nAcceptance criteria:\n- Map foundational definitions and examples to the [semantics](../02-minimal-semantics/objective.md) and [conformance evidence](../03-conformance-handoff/objective.md).\n- Identify contradictions, missing explanations, and placeholders with pinned paths; propose concise replacement passages or example outlines here.\n- Define a repeatable docs/source consistency review and explicit pass/fail criteria for each example.\n- Record implementation/documentation requests, distinguishing proposed text, source inspection, executed checks, and customer evidence.\n\nDependencies: semantics and conformance specification. Next action once eligible: draft/check a bounded consistency matrix or decompose it. Confidence 85% for that next action; documentation completion is not inferred from a plan.\n",
+      "git_blob_sha": "2321dd003c09f337ec1441c6559f803c474e9bd9"
+    },
+    {
+      "path": "graphlang/objective.md",
+      "content": "---\nrole: CIO\nstatus: ongoing\nprogress_percent: null\nconfidence_percent: 95\nassessed_by: \"Codex (exact model identifier unavailable)\"\nassessed_on: \"2026-10-28\"\nscope: \"graphlang/\"\n---\n\n# CIO — Graph Lang\n\nDevelop Graph Lang as the documented, executable graph language underlying Oasis, with its source and research documentation maintained in [oasislaboratory/graph-lang](https://github.com/oasislaboratory/graph-lang).\n\nKeep the language's mathematical model, documented examples, and tested runtime behavior consistent. This branch tracks objectives and evidence; implementation and textbook work belong in the linked repository.\n",
+      "git_blob_sha": "d9d19f7b6fbc356bb2bca2c03aadc0376e7356f7"
+    },
+    {
+      "path": "graphlang/status.md",
+      "content": "# Graph Lang status\n\n## 2026-10-28 — initial CIO decomposition\n\n- Owner/assessor: Codex; exact model identifier unavailable. Scope: graphlang/ only. Continuing mandate remains ongoing; progress is null because no explicit end-to-end baseline supports a percentage.\n- Selected leaf: graphlang/objective.md, sole unfinished in-scope leaf at [8adbbd4](https://github.com/oasislaboratory/oasis/commit/8adbbd44f71074907e717b747dcd07111ef5e1e8). Current incarnation introduced in [2ce6d17](https://github.com/oasislaboratory/oasis/commit/2ce6d178333f6e6d78ff30ac5ca37c2c719ee0e0), following the historical repository clearing. No age tie.\n- Context/overlap: read root AGENTS.md, README, root/branch objectives, complete descendant tree, path history, sibling status logs, and linked browser runtime objective. Open issues and PRs were empty; no Graph Lang status/children or active assignment marker existed. This checks repository-visible assignments, not unseen external activity.\n- Confidence: 10% to complete and verify the full language mandate in one run; semantics, implementation, and documentation consistency need multiple increments, and implementation writes are not authorized. Canonical metadata confidence 95% concerns authoring and verifying this bounded decomposition only; both are judgment estimates.\n- Result: four planned children: [source baseline](01-source-baseline/objective.md), [minimal semantics](02-minimal-semantics/objective.md), [conformance handoff](03-conformance-handoff/objective.md), and [documentation consistency](04-documentation-consistency/objective.md). Coverage proceeds from observed facts to explicit rules, checkable acceptance, and docs/source alignment. Dependencies are acyclic. Stop expansion here; child work is deferred.\n- Read-only source evidence: [graph-lang at 6e57551](https://github.com/oasislaboratory/graph-lang/tree/6e575510ea5346dad35d75b41d4492b05ed75548). Read README, introduction, Graphs, Notation, Arrows, package.json, graph.json, root route, and vertex loader; inspected full non-truncated tree, which contains no AGENTS.md. Introduction describes a browser-native explorer and a research thesis. Graphs quotes an unordered incidence definition; graph.json is an asymmetric matrix, so orientation needs clarification. Arrows is a research note. Recursion, Primitives, Syntax, and Semantics entries are one-byte placeholders in the tree.\n- Source inspection only: graph.json contains three named vertices and a cyclic matrix; root route links vertices, loader validates an index and returns a vertex. package.json declares dev/build/preview and no test script. These facts do not establish evaluator behavior, nor prove no tests exist outside this tree. No application build, runtime evaluation, performance measurement, or customer validation was performed.\n- Verification: checked all six proposed paths stay within graphlang/, required metadata and planned child status, exact preservation of founder objective body, local dependency/link targets, and acyclic child dependencies. Publication must re-read main and preserve sibling changes using a non-force expected-head update; read back the committed scoped files and inspect changed paths.\n- Delegation: no workers needed for this small single-leaf decomposition; parent owns all six files, avoiding overlapping writes.\n- Next eligible leaf: 01-source-baseline/objective.md (all children introduced together, path breaks tie). Conditional next-action confidence: 90%, 80%, 80%, 85%; no child result is completed.\n- Cross-branch requests: implementation owner should supply an executable runtime entry point and reproducible checks when a contract is accepted; source/docs changes require separate repository authorization. CIO acknowledges [CTO request](../graphbrowser/status.md) for input/output/environment/error contracts and executable evidence; child 03 will supply a specification, and actual integration remains unverified. No sibling changes requested yet.\n- Founder decision: none required for baseline/decomposition. Any consequential semantics choice will be surfaced with alternatives and evidence. Implementation authorization can be decided when a concrete handoff exists.\n",
+      "git_blob_sha": "36335b189b52bc10b9f7eabd0402d35baa5c5fd3"
+    },
+    {
+      "path": "meta/01-baseline/objective.md",
+      "content": "---\nrole: Upper Leadership\nstatus: completed\nprogress_percent: 100\nconfidence_percent: 90\nassessed_by: \"Codex (GPT-6; exact runtime identifier unavailable)\"\nassessed_on: \"2026-10-28\"\nscope: \"meta/01-baseline/\"\n---\n\n# Upper Leadership — Establish a measurable baseline\n\nCreate a reproducible baseline for agent work using pinned repository snapshots and evidence-backed run records. Keep all artifacts in this folder; sibling branches are read-only sources.\n\nAcceptance criteria:\n- Define a run-record schema covering objective path, role/model when known, input/output commits, selected action, verification result, rework/failures, elapsed time, and cost/token usage when actually available. Unknown measurements remain null.\n- Capture an initial pinned snapshot of objectives, statuses, evidence links, and observable completed work across the three branches. Distinguish a structural snapshot from measured agent productivity.\n- Provide a reproducible extraction/check method and demonstrate it on the snapshot. Do not equate commit counts, folder counts, or confidence with useful output.\n- Document missing telemetry and a bounded way to collect comparable records without changing schedules or sibling files.\n\nNext action: define the schema and capture/check one snapshot in this folder. Confidence: 90%; bounded read-only inspection and local artifact validation are feasible. A productivity baseline may remain unknown until actual outcomes are observable.\n\n\nVerification: [baseline package and acceptance mapping](README.md), [check results](verification/README.md), and [local status](status.md). Confidence 90% records the pre-execution judgment; this bounded package is now complete. Productivity optimization remains unevidenced.\n",
+      "git_blob_sha": "ac1d8e176f913f53dc2bfd8991ddaf099c5d49d9"
+    },
+    {
+      "path": "meta/01-baseline/status.md",
+      "content": "# Baseline status\n\n## 2026-10-28 — bounded baseline package\n- Selected oldest unfinished unblocked leaf: meta/01-baseline/objective.md, introduced in [2c89fd4](https://github.com/oasislaboratory/oasis/commit/2c89fd4c8429af4d7af0fea4f9123257a675ded9). All three Meta leaves share that commit; path breaks the tie. Experiment design depends on this baseline; evaluation also needs a frozen protocol.\n- Pre-action confidence: 90%, a judgment that pinned extraction/schema/checks fit one run. Four explicit acceptance criteria are satisfied by the [package mapping](README.md); bounded package progress 100%. This is not measured productivity improvement.\n- Assessor: Codex (GPT-6; exact runtime identifier unavailable). Sole repository write scope meta/. Checked full tree/status, open issues/PRs (none), and paused existing Meta task before writing; no overlapping active assignment was evidenced. External unrecorded work cannot be ruled out.\n- One worker owns verification/ exclusively, no recursive delegation. Parent owns fixtures/docs/objective and branch summary. Worker terminated with a model capacity error after writing the checker. Parent reviewed its code and completed all verification; no worker completion claim accepted.\n- Source inspection: frozen input [8adbbd4](https://github.com/oasislaboratory/oasis/tree/8adbbd44f71074907e717b747dcd07111ef5e1e8); root policies, objectives, descendants, sibling status and linked source inspected. Planning: collection protocol. Tested behavior: extractor/schema checks only, detailed in [worker verification](verification/README.md). Customer/performance/cost evidence: absent.\n- Verification: parent reruns checker, compares source Git blob hashes to pinned tree, reviews scoped paths and unchanged founder prose; publishing uses a refreshed expected-head non-force fast-forward and readback. Actual outputs are recorded in verification/README.md and run-record.json; the enclosing commit is the publication reference.\n- Next action: preregister one exploratory comparison in ../02-experiment-design/ using this schema and telemetry limits. No variant execution in this run. No cross-branch prerequisite or founder decision needed. Existing verification-record requests are optional; no sibling writes directed.\n",
+      "git_blob_sha": "cb9fb2349474b22d80ca05c4ed671d0bbbdc73ec"
+    },
+    {
+      "path": "meta/02-experiment-design/objective.md",
+      "content": "---\nrole: Upper Leadership\nstatus: planned\nprogress_percent: null\nconfidence_percent: 85\nassessed_by: \"COO/CFO agent\"\nassessed_on: \"2026-10-28\"\nscope: \"meta/02-experiment-design/\"\n---\n\n# Upper Leadership — Predefine a controlled process experiment\n\nUsing [the baseline](../01-baseline/objective.md), preregister one bounded A/B comparison of the agent work process. Define the protocol before running either variant.\n\nAcceptance criteria:\n- State a falsifiable hypothesis, baseline/control A, and exactly one changed process rule in variant B.\n- Specify comparable task fixtures, fixed acceptance checks, actual model configuration when known, assignment/randomization method, per-variant work budget, and handling of failed or missing runs.\n- Define primary verified-outcome metric, rework/quality checks, elapsed time and cost where measurable, sample size, stopping rule, and the threshold for an allocation recommendation. Never use self-reported confidence as the success metric.\n- Provide a frozen task/evaluation manifest and explain how to keep evaluation separate from variant self-scoring. Label the comparison exploratory if sample size cannot support a stronger conclusion.\n- Keep execution within Meta's folder and existing authority; propose, rather than change, other chiefs' prompts, schedules, or allocations.\n\nDependency: baseline schema and available measurement limitations must be documented first.\nNext action once eligible: write and validate the protocol/manifest. Conditional confidence: 85%; a bounded protocol can be authored and checked, while measurement gaps may limit what can be tested.\n\n",
+      "git_blob_sha": "8c77578c6ae0e41b40424b8ff803c474846fe4b2"
+    },
+    {
+      "path": "meta/03-evaluate-allocation/objective.md",
+      "content": "---\nrole: Upper Leadership\nstatus: planned\nprogress_percent: null\nconfidence_percent: 70\nassessed_by: \"COO/CFO agent\"\nassessed_on: \"2026-10-28\"\nscope: \"meta/03-evaluate-allocation/\"\n---\n\n# Upper Leadership — Evaluate variants and recommend allocation\n\nRun the [preregistered comparison](../02-experiment-design/objective.md) within its defined scope and budget, then report whether evidence supports changing allocation. Do not modify schedules, other branches, financial assets, or spending.\n\nAcceptance criteria:\n- Preserve the frozen protocol reference and raw records for both variants, including failures, missing measurements, verification outputs, model identity when available, and deviations.\n- Evaluate both variants against the same independent acceptance checks; report paired or otherwise protocol-defined comparisons and limitations.\n- Apply the stopping rule and recommendation threshold without changing them after seeing results. State inconclusive when evidence is insufficient.\n- Propose retain/change/collect-more-evidence with rationale, expected tradeoffs, and a bounded next iteration for evolutionary improvement. Any consequential allocation change remains a founder decision.\n\nDependency: baseline and frozen experiment protocol; execution is ineligible until those exist. If the protocol is too large for one run, decompose this objective before executing it.\nNext action once eligible: inspect the frozen protocol and execute a bounded comparison or decompose its execution. Conditional confidence: 70% through bounded execution or further decomposition; confidence in demonstrating an improvement is unknown.\n\n",
+      "git_blob_sha": "3afaded5fb3101c997d230095f80084df0889691"
+    },
+    {
+      "path": "meta/objective.md",
+      "content": "---\nrole: COO/CFO\nstatus: ongoing\nprogress_percent: null\nconfidence_percent: 85\nassessed_by: \"Codex (GPT-6; exact runtime identifier unavailable)\"\nassessed_on: \"2026-10-28\"\nscope: \"meta/\"\n---\n\n# COO/CFO — Meta\n\nEvolve this OKR DAG into an effective system for directing Oasis and optimizing portfolios of agents and their work.\n\nHave agents manage portfolios of objectives and experiments; measure outcomes, learn from performance, and allocate effort accordingly. Test improvements to the process itself through controlled A/B experiments and evolutionary variation, selection, and iteration.\n\nEvaluate allocation policies against a baseline using verified objective progress, quality, cost, and elapsed time. Treat gains as hypotheses until measured; distinguish agent/work portfolios from financial portfolios, which require an explicit mandate.\n\n## Advisory remit\n\nReview the full OKR DAG and suggest edits or forked structures to improve workflow. Keep evidence, proposals, patches, and test variants within meta/; applying changes elsewhere requires founder approval. See [COO/CFO advisory authority](../AGENTS.md#coocfo-advisory-authority).\n",
+      "git_blob_sha": "1c7f1f2e6e500ad69051d078e1f51c3e150e7c7a"
+    },
+    {
+      "path": "meta/status.md",
+      "content": "# Meta status\n\n## 2026-10-28 — initial decomposition\n\n- Status: ongoing. Owner: COO/CFO agent; exact model identifier unavailable.\n- Selected leaf: `meta/objective.md`, introduced in [2ce6d17](https://github.com/oasislaboratory/oasis/commit/2ce6d178333f6e6d78ff30ac5ca37c2c719ee0e0). Sole Meta leaf at inspected head [07bf82b](https://github.com/oasislaboratory/oasis/commit/07bf82ba950dbef1a4cde22ed0a068f3c1ec5c78); no age tie.\n- Authority/overlap check: read root AGENTS.md, README.md, root objective, both sibling objectives, complete non-truncated tree, and Meta commit history. No Meta status logs, child assignments, or active-work markers existed in that snapshot. This is observable repository state, not proof that no external agent is running. Recheck the head and Meta subtree before publishing; preserve concurrent sibling work.\n- Confidence: 5% to achieve and verify the full continuing Meta mandate in one run; performance optimization requires observations and repeated evaluation. Metadata confidence 95% refers only to the next action: author and validate this bounded decomposition.\n- Action: created three planned Upper Leadership objectives: [baseline](01-baseline/objective.md), [experiment design](02-experiment-design/objective.md), and [evaluation/allocation recommendation](03-evaluate-allocation/objective.md). Their conditional next-action confidence estimates are 90%, 85%, and 70%; these are judgments, not measured probabilities.\n- Coverage rationale: baseline supplies observations, protocol defines a falsifiable comparison, and evaluation closes the learning/allocation loop. Iteration can continue through further bounded objectives; this set does not claim that one experiment completes the ongoing mandate.\n- Baseline observation only: the pinned tree contained four objective.md files (root and three chiefs), all ongoing with null progress/confidence before assessment, and no status.md files or verification artifacts. No measured productivity, cost, timing, customer outcomes, or variant advantage is established.\n- Verification: validate all new objective metadata/scopes, preserve founder objective prose, inspect diff paths, and read back committed files. No product behavior or agent performance was tested. Child work has not been executed; stop after this decomposition.\n- Progress: null; no criterion/weighting supports a percentage for the continuing mandate. Folder creation is planning, not outcome progress.\n- Next eligible leaf: `meta/01-baseline/objective.md`. Later stages depend on baseline/protocol evidence and must not execute prematurely.\n- Cross-branch requests: none required to begin. Read sibling evidence without editing it; document telemetry gaps before requesting changes.\n- Founder decision: none needed for this decomposition. Any future prompt/schedule/allocation change requires a separate decision.\n\n## 2026-10-28 — baseline completed\n- Selected [01-baseline](01-baseline/objective.md) by introduction commit/path ordering; completed its four bounded acceptance criteria. [Package](01-baseline/README.md) and [verification](01-baseline/verification/README.md) supply evidence. Continuing Meta mandate remains ongoing, progress null; structural counts do not establish allocation gains.\n- Assessor: Codex (GPT-6; exact runtime identifier unavailable). Pre-action leaf confidence 90%; next-action branch confidence 85% for authoring/checking the experiment protocol, not proving a benefit.\n- Frozen input 8adbbd44f71074907e717b747dcd07111ef5e1e8: 11 objectives, two planning logs, zero completed objectives. Elapsed time, tokens, cost and customer outcomes unknown. Source Git blob hashes checked; reproducible extractor/schema passes; five negative cases reject invalid evidence/scope/metadata.\n- Delegation: one exclusive verification/ worker produced code but terminated with model capacity error before final verification. Parent reviewed code, completed tests and accepts only parent-reproduced results. No worker edited ancestors; parent reconciled this summary.\n- Overlap: no active Meta assignment evidenced in current tree/logs/open issues/PRs; existing Meta task was paused at inspection. User explicitly requested hourly recurrence; only that existing task was resumed, preserving its on-the-hour schedule. No sibling task changed. Recurring execution retains the prohibition on schedule mutations.\n- Next eligible leaf: [02-experiment-design](02-experiment-design/objective.md), now unblocked. Define protocol/manifest before either variant executes. 03-evaluate-allocation remains prerequisite-gated by a frozen protocol (its planned metadata is not evidence of eligibility).\n- Cross-branch requests: none required; optional existing run/verification evidence may be incorporated read-only. Retain current allocation pending comparable evidence. Founder decision: none.\n",
+      "git_blob_sha": "a4167fd5199c017b8a81fb83cb5e5bafec792f84"
+    },
+    {
+      "path": "objective.md",
+      "content": "---\nrole: CEO\nstatus: ongoing\nprogress_percent: null\nconfidence_percent: null\nassessed_by: null\nassessed_on: null\nscope: \".\"\n---\n\n# CEO — Oasis\n\nCultivate this OKR DAG into a startup that hits product-market-fit, for its olog/graph browser/IDE.\n\nIn all OKR's, comments/docs, code, and any other artifacts, prioritize concise efficient communication.\n",
+      "git_blob_sha": "97fd7f33cf0190649ae0714faf2d178593000e01"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "graphbrowser/01-workflow-contract",
+      "path": "graphbrowser/01-workflow-contract/objective.md",
+      "role": "Upper Leadership",
+      "status": "planned",
+      "parent_id": "graphbrowser",
+      "evidence_paths": [],
+      "depends_on": []
+    },
+    {
+      "id": "graphbrowser/02-editor-prototype",
+      "path": "graphbrowser/02-editor-prototype/objective.md",
+      "role": "Upper Leadership",
+      "status": "planned",
+      "parent_id": "graphbrowser",
+      "evidence_paths": [],
+      "depends_on": [
+        "graphbrowser/01-workflow-contract"
+      ]
+    },
+    {
+      "id": "graphbrowser/03-runtime-environment",
+      "path": "graphbrowser/03-runtime-environment/objective.md",
+      "role": "Upper Leadership",
+      "status": "planned",
+      "parent_id": "graphbrowser",
+      "evidence_paths": [],
+      "depends_on": [
+        "graphbrowser/01-workflow-contract"
+      ]
+    },
+    {
+      "id": "graphbrowser/04-release-validation",
+      "path": "graphbrowser/04-release-validation/objective.md",
+      "role": "Upper Leadership",
+      "status": "planned",
+      "parent_id": "graphbrowser",
+      "evidence_paths": [],
+      "depends_on": [
+        "graphbrowser/02-editor-prototype",
+        "graphbrowser/03-runtime-environment"
+      ]
+    },
+    {
+      "id": "graphbrowser",
+      "path": "graphbrowser/objective.md",
+      "role": "CTO",
+      "status": "ongoing",
+      "parent_id": ".",
+      "evidence_paths": [
+        "graphbrowser/status.md"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "graphlang/01-source-baseline",
+      "path": "graphlang/01-source-baseline/objective.md",
+      "role": "Upper Leadership",
+      "status": "planned",
+      "parent_id": "graphlang",
+      "evidence_paths": [],
+      "depends_on": []
+    },
+    {
+      "id": "graphlang/02-minimal-semantics",
+      "path": "graphlang/02-minimal-semantics/objective.md",
+      "role": "Upper Leadership",
+      "status": "planned",
+      "parent_id": "graphlang",
+      "evidence_paths": [],
+      "depends_on": [
+        "graphlang/01-source-baseline"
+      ]
+    },
+    {
+      "id": "graphlang/03-conformance-handoff",
+      "path": "graphlang/03-conformance-handoff/objective.md",
+      "role": "Upper Leadership",
+      "status": "planned",
+      "parent_id": "graphlang",
+      "evidence_paths": [],
+      "depends_on": [
+        "graphlang/02-minimal-semantics"
+      ]
+    },
+    {
+      "id": "graphlang/04-documentation-consistency",
+      "path": "graphlang/04-documentation-consistency/objective.md",
+      "role": "Upper Leadership",
+      "status": "planned",
+      "parent_id": "graphlang",
+      "evidence_paths": [],
+      "depends_on": [
+        "graphlang/02-minimal-semantics",
+        "graphlang/03-conformance-handoff"
+      ]
+    },
+    {
+      "id": "graphlang",
+      "path": "graphlang/objective.md",
+      "role": "CIO",
+      "status": "ongoing",
+      "parent_id": ".",
+      "evidence_paths": [
+        "graphlang/status.md"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "meta/01-baseline",
+      "path": "meta/01-baseline/objective.md",
+      "role": "Upper Leadership",
+      "status": "completed",
+      "parent_id": "meta",
+      "evidence_paths": [
+        "meta/01-baseline/status.md"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "meta/02-experiment-design",
+      "path": "meta/02-experiment-design/objective.md",
+      "role": "Upper Leadership",
+      "status": "planned",
+      "parent_id": "meta",
+      "evidence_paths": [],
+      "depends_on": [
+        "meta/01-baseline"
+      ]
+    },
+    {
+      "id": "meta/03-evaluate-allocation",
+      "path": "meta/03-evaluate-allocation/objective.md",
+      "role": "Upper Leadership",
+      "status": "planned",
+      "parent_id": "meta",
+      "evidence_paths": [],
+      "depends_on": [
+        "meta/01-baseline",
+        "meta/02-experiment-design"
+      ]
+    },
+    {
+      "id": "meta",
+      "path": "meta/objective.md",
+      "role": "COO/CFO",
+      "status": "ongoing",
+      "parent_id": ".",
+      "evidence_paths": [
+        "meta/status.md"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": ".",
+      "path": "objective.md",
+      "role": "CEO",
+      "status": "ongoing",
+      "parent_id": null,
+      "evidence_paths": [],
+      "depends_on": []
+    }
+  ]
+}
