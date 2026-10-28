@@ -1,0 +1,223 @@
+{
+  "repository": "oasislaboratory/graph-lang",
+  "commit": "6e575510ea5346dad35d75b41d4492b05ed75548",
+  "tree": [
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "57120e7d29493a87a9ae8b77efdee9e057f70dde",
+      "size": 60,
+      "url": "https://api.github.com/repos/oasislaboratory/graph-lang/git/blobs/57120e7d29493a87a9ae8b77efdee9e057f70dde"
+    },
+    {
+      "path": "LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "501d5bb94d9222baead5add5bba05c8fad079f2d",
+      "size": 1502,
+      "url": "https://api.github.com/repos/oasislaboratory/graph-lang/git/blobs/501d5bb94d9222baead5add5bba05c8fad079f2d"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c50c22c0288eeb56a87633e5c1aed5750988fe9f",
+      "size": 342,
+      "url": "https://api.github.com/repos/oasislaboratory/graph-lang/git/blobs/c50c22c0288eeb56a87633e5c1aed5750988fe9f"
+    },
+    {
+      "path": "docs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ccb5c38a54c3dea72aa5c10f95dfb97fadec8ab4",
+      "url": "https://api.github.com/repos/oasislaboratory/graph-lang/git/trees/ccb5c38a54c3dea72aa5c10f95dfb97fadec8ab4"
+    },
+    {
+      "path": "docs/0-Introduction.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d02c3e4b936ed954250bf1c641f4f7bacda02b2b",
+      "size": 730,
+      "url": "https://api.github.com/repos/oasislaboratory/graph-lang/git/blobs/d02c3e4b936ed954250bf1c641f4f7bacda02b2b"
+    },
+    {
+      "path": "docs/1-Graphs.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b58b46ed685309868a5b5d48966b290e8a13f0bc",
+      "size": 1739,
+      "url": "https://api.github.com/repos/oasislaboratory/graph-lang/git/blobs/b58b46ed685309868a5b5d48966b290e8a13f0bc"
+    },
+    {
+      "path": "docs/2-Notation.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1838a432edf8ac9bb8534eacc2c99d44ce8faf9f",
+      "size": 368,
+      "url": "https://api.github.com/repos/oasislaboratory/graph-lang/git/blobs/1838a432edf8ac9bb8534eacc2c99d44ce8faf9f"
+    },
+    {
+      "path": "docs/3-Arrows.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cd850d2f77bceae08b956b853621818aa5b962c4",
+      "size": 166,
+      "url": "https://api.github.com/repos/oasislaboratory/graph-lang/git/blobs/cd850d2f77bceae08b956b853621818aa5b962c4"
+    },
+    {
+      "path": "docs/4-Recursion.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b137891791fe96927ad78e64b0aad7bded08bdc",
+      "size": 1,
+      "url": "https://api.github.com/repos/oasislaboratory/graph-lang/git/blobs/8b137891791fe96927ad78e64b0aad7bded08bdc"
+    },
+    {
+      "path": "docs/5-Primitives.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b137891791fe96927ad78e64b0aad7bded08bdc",
+      "size": 1,
+      "url": "https://api.github.com/repos/oasislaboratory/graph-lang/git/blobs/8b137891791fe96927ad78e64b0aad7bded08bdc"
+    },
+    {
+      "path": "docs/6-Syntax.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b137891791fe96927ad78e64b0aad7bded08bdc",
+      "size": 1,
+      "url": "https://api.github.com/repos/oasislaboratory/graph-lang/git/blobs/8b137891791fe96927ad78e64b0aad7bded08bdc"
+    },
+    {
+      "path": "docs/7-Semantics.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b137891791fe96927ad78e64b0aad7bded08bdc",
+      "size": 1,
+      "url": "https://api.github.com/repos/oasislaboratory/graph-lang/git/blobs/8b137891791fe96927ad78e64b0aad7bded08bdc"
+    },
+    {
+      "path": "docs/8-Bibliography.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f7b9b952f858b3980f297e95f14648bcacab9392",
+      "size": 80,
+      "url": "https://api.github.com/repos/oasislaboratory/graph-lang/git/blobs/f7b9b952f858b3980f297e95f14648bcacab9392"
+    },
+    {
+      "path": "docs/LICENSE.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1e9581b6cf2d1545c3612cfb3716f058069b222c",
+      "size": 463,
+      "url": "https://api.github.com/repos/oasislaboratory/graph-lang/git/blobs/1e9581b6cf2d1545c3612cfb3716f058069b222c"
+    },
+    {
+      "path": "package.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9d0e30398dc1dff5cddbe567b3bf1d6798931aac",
+      "size": 332,
+      "url": "https://api.github.com/repos/oasislaboratory/graph-lang/git/blobs/9d0e30398dc1dff5cddbe567b3bf1d6798931aac"
+    },
+    {
+      "path": "src",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e60470f7311249cdeb011316945ff0a3990d7a0f",
+      "url": "https://api.github.com/repos/oasislaboratory/graph-lang/git/trees/e60470f7311249cdeb011316945ff0a3990d7a0f"
+    },
+    {
+      "path": "src/app.html",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b8ba4699b2ba92feda9f1091479de8d824777c0d",
+      "size": 250,
+      "url": "https://api.github.com/repos/oasislaboratory/graph-lang/git/blobs/b8ba4699b2ba92feda9f1091479de8d824777c0d"
+    },
+    {
+      "path": "src/lib",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "fa7054edc25dc44c5022c24f17bc1746e63fe13f",
+      "url": "https://api.github.com/repos/oasislaboratory/graph-lang/git/trees/fa7054edc25dc44c5022c24f17bc1746e63fe13f"
+    },
+    {
+      "path": "src/lib/graph.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dc9f2594a751bfb4212c4c2e0eaf7b6484b30c04",
+      "size": 93,
+      "url": "https://api.github.com/repos/oasislaboratory/graph-lang/git/blobs/dc9f2594a751bfb4212c4c2e0eaf7b6484b30c04"
+    },
+    {
+      "path": "src/routes",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ab6f742efb8c9e6a884e884d84e14ad1588f20c8",
+      "url": "https://api.github.com/repos/oasislaboratory/graph-lang/git/trees/ab6f742efb8c9e6a884e884d84e14ad1588f20c8"
+    },
+    {
+      "path": "src/routes/+page.svelte",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1b9b23b1ba80e7540b6fe156e243e907a9bf5f06",
+      "size": 204,
+      "url": "https://api.github.com/repos/oasislaboratory/graph-lang/git/blobs/1b9b23b1ba80e7540b6fe156e243e907a9bf5f06"
+    },
+    {
+      "path": "src/routes/[vertex]",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "759f027b30c116ac925746a44dcb0e587749801b",
+      "url": "https://api.github.com/repos/oasislaboratory/graph-lang/git/trees/759f027b30c116ac925746a44dcb0e587749801b"
+    },
+    {
+      "path": "src/routes/[vertex]/+page.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "90468f40feea6f776479b0c933fb1a7ee39ab915",
+      "size": 371,
+      "url": "https://api.github.com/repos/oasislaboratory/graph-lang/git/blobs/90468f40feea6f776479b0c933fb1a7ee39ab915"
+    },
+    {
+      "path": "src/routes/[vertex]/+page.svelte",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aedd7114c241dcdc94c0af2b64ba9fad6ed7d20d",
+      "size": 129,
+      "url": "https://api.github.com/repos/oasislaboratory/graph-lang/git/blobs/aedd7114c241dcdc94c0af2b64ba9fad6ed7d20d"
+    },
+    {
+      "path": "vite.config.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "14be786f6676393cb98bb665177eb55314c5531f",
+      "size": 231,
+      "url": "https://api.github.com/repos/oasislaboratory/graph-lang/git/blobs/14be786f6676393cb98bb665177eb55314c5531f"
+    }
+  ],
+  "files": {
+    ".gitignore": "node_modules/\n.svelte-kit/\nbuild/\n.env\n.env.*\n!.env.example\n",
+    "LICENSE": "BSD 3-Clause License\n\nCopyright (c) 2026, oasislaboratory\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are met:\n\n1. Redistributions of source code must retain the above copyright notice, this\n   list of conditions and the following disclaimer.\n\n2. Redistributions in binary form must reproduce the above copyright notice,\n   this list of conditions and the following disclaimer in the documentation\n   and/or other materials provided with the distribution.\n\n3. Neither the name of the copyright holder nor the names of its\n   contributors may be used to endorse or promote products derived from\n   this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\"\nAND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE\nIMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\nDISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE\nFOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL\nDAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR\nSERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER\nCAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,\nOR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE\nOF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n",
+    "README.md": "# graph-lang\nExperimenting with graph-based computation\nthrough open research: scientific literate programming\nof the [documentation](docs) and respective [source code](src).\n\nStart [Here.](docs/0-Introduction.md)\n\nSource code is licensed under [BSD-3-Clause](LICENSE), while the documentation is licensed under [CC BY 4.0](docs/LICENSE.md).\n",
+    "docs/0-Introduction.md": "# 0. Introduction\n\nWelcome to graph-lang! These documents serve as a living research notebook and reference hypertext for our study of graph computation. The source code builds a browser-native graph explorer, evolving alongside our understanding of the theory.\n\nThe central thesis is that graphs may serve not only as convenient data representations, but also as homoiconic structures, much like Lisp's symbolic expressions, capable of representing programs themselves.\n\n## Table of Contents\n\n1. [Graphs](1-Graphs.md)\n2. [Notation](2-Notation.md)\n3. [Arrows](3-Arrows.md)\n4. [Recursion](4-Recursion.md)\n5. [Primitives](5-Primitives.md)\n6. [Syntax](6-Syntax.md)\n7. [Semantics](7-Semantics.md)\n8. [Bibliography](8-Bibliography.md)\n",
+    "docs/1-Graphs.md": "# 1. Graphs?\n\nYes, our research centers around graphs. Picture a graph. Perhaps you are imagining a chart or the graph of an equation on a cartesian plane. In the mathematical field of graph theory, graphs have a specific definition, representing a network of nodes connected by edges:\n\n> “A graph $G$ is an ordered pair $(V(G), E(G))$ consisting of a set $V(G)$ of vertices and a set $E(G)$, disjoint from $V(G)$, of edges, together with an incidence function $\\psi_G$ that associates with each edge of $G$ an unordered pair of (not necessarily distinct) vertices of $G$.” [1]\n\nWe will loosely adopt this set-theoretic definition of graph in our work, because while it may look entirely abstract and different from more visual charts, it too can be applied to model the same relations, and expressed visually.\n\nPure mathematicians, being precise with their abstractions, distinguish graphs themselves from their set-theoretic or notational, and visual representations. Throughout this text we take a more applied view. Rather than treating abstract objects as more mathematically fundamental than their representations, we will study the representations as mathematical objects in their own right. A function can appear as a curve, an equation, or a table of inputs and outputs; all facets of the same gem.\n\nGraphs were so named for their ability to be represented visually. Perhaps due to this, they are often used in the study of physical networks and relationships. Following our applied view, we ask what if the abstract graph itself was equivalent to the network it represents, perhaps undergoing a single mapping function. The map is not the terrain, but is only one function away.\n\nNotes\n1. Bondy and Murty, \"Graph Theory\", 2.\n",
+    "docs/2-Notation.md": "If a function's representations and perhaps even notation itself are functionally equivalent why use graphs? \n\nMetaphors, Judea Pearl quotes. Hume quote and other SICP, abstraction is a mapping.\n\nThe map and terrain arise interdependently. Representation is abstraction.\n\nWe chose graphs to minimize notational representation, and focus on primitive first principles.\n",
+    "docs/3-Arrows.md": "A move we make is asking what happens if we take a graph's edges themselves to be functions or morphisms, essentially studying Category Theory's ologs. Quote Spivak.\n",
+    "docs/4-Recursion.md": "\n",
+    "docs/5-Primitives.md": "\n",
+    "docs/6-Syntax.md": "\n",
+    "docs/7-Semantics.md": "\n",
+    "docs/8-Bibliography.md": "# Bibliography\n## Bondy, J. A., & Murty, U. S. R. Graph Theory. Springer, 2008.\n",
+    "docs/LICENSE.md": "# Documentation License\n\nCopyright © 2026 graph-lang contributors.\n\nUnless otherwise noted, the original documentation in this directory is licensed under the [Creative Commons Attribution 4.0 International License (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).\n\nCode examples and executable snippets are licensed under the repository's [BSD 3-Clause License](../LICENSE).\n\nThird-party material retains its respective copyright and licensing terms.\n",
+    "package.json": "{\n  \"name\": \"graph-lang\",\n  \"version\": \"0.0.1\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": {\n    \"dev\": \"vite dev\",\n    \"build\": \"vite build\",\n    \"preview\": \"vite preview\"\n  },\n  \"devDependencies\": {\n    \"@sveltejs/adapter-auto\": \"latest\",\n    \"@sveltejs/kit\": \"latest\",\n    \"svelte\": \"latest\",\n    \"vite\": \"latest\"\n  }\n}\n",
+    "src/app.html": "<!doctype html>\n<html lang=\"en\">\n\t<head>\n\t\t<meta charset=\"utf-8\" />\n\t\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n\t\t%sveltekit.head%\n\t</head>\n\t<body>\n\t\t<div style=\"display: contents\">%sveltekit.body%</div>\n\t</body>\n</html>\n",
+    "src/lib/graph.json": "[\n  [\"a\", \"b\", \"c\"],\n  [\n    [null, 1, null],\n    [null, null, 1],\n    [1, null, null]\n  ]\n]\n",
+    "src/routes/+page.svelte": "<h1>Graph:</h1>\n<script>\n  import graph from '../lib/graph.json';\n\n  const vertices = graph[0];\n</script>\n\n<h1>Graph Lang</h1>\n\n{#each vertices as vertex, index}\n  <a href=\"/{index}\">{vertex}</a>\n{/each}\n",
+    "src/routes/[vertex]/+page.js": "import graph from '../../lib/graph.json';\nimport { error } from '@sveltejs/kit';\n\nexport function load({ params }) {\n  const index = Number(params.vertex);\n  const vertices = graph[0];\n\n  if (\n    !/^(0|[1-9]\\d*)$/.test(params.vertex) ||\n    index >= vertices.length\n  ) {\n    error(404, 'Vertex not found');\n  }\n\n  return {\n    vertex: vertices[index],\n    index\n  };\n}\n",
+    "src/routes/[vertex]/+page.svelte": "<script>\n  let { data } = $props();\n</script>\n\n<article>\n  <h1>{data.vertex}</h1>\n  <p>Vertex index: {data.index}</p>\n</article>\n",
+    "vite.config.js": "import adapter from '@sveltejs/adapter-auto';\nimport { sveltekit } from '@sveltejs/kit/vite';\nimport { defineConfig } from 'vite';\n\nexport default defineConfig({\n  plugins: [\n    sveltekit({\n      adapter: adapter()\n    })\n  ]\n});\n"
+  }
+}

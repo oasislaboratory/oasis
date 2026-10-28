@@ -14,3 +14,12 @@
 - Next eligible leaf: 01-source-baseline/objective.md (all children introduced together, path breaks tie). Conditional next-action confidence: 90%, 80%, 80%, 85%; no child result is completed.
 - Cross-branch requests: implementation owner should supply an executable runtime entry point and reproducible checks when a contract is accepted; source/docs changes require separate repository authorization. CIO acknowledges [CTO request](../graphbrowser/status.md) for input/output/environment/error contracts and executable evidence; child 03 will supply a specification, and actual integration remains unverified. No sibling changes requested yet.
 - Founder decision: none required for baseline/decomposition. Any consequential semantics choice will be surfaced with alternatives and evidence. Implementation authorization can be decided when a concrete handoff exists.
+
+## 2026-10-28 — dedicated CIO baseline run
+
+- Completed [source baseline](01-source-baseline/objective.md); [inventory and acceptance review](01-source-baseline/README.md) covers all four criteria. The ongoing CIO mandate retains null progress.
+- Assessor: Codex (exact runtime model identifier unavailable). Pre-action confidence 90% for this bounded inventory; not a runtime-readiness probability.
+- Read all 20 source files at 6e575510ea5346dad35d75b41d4492b05ed75548. Offline Git blob/size and static fixture checks passed; application, build, evaluator and customer behavior were not tested.
+- No visible overlapping assignment in current tree, status logs, open issues/PRs or branches. Main was the only branch. Source baseline introduced in d385691583ea19ba51cc6b1cffc7607b9400d878 with its siblings; path order and prerequisite gates select 01.
+- Next eligible leaf: [minimal semantics](02-minimal-semantics/objective.md). Draft a candidate contract, retaining consequential choices as proposals. No founder decision is needed to begin that work. Source modifications remain unauthorized.
+- Created the user-requested dedicated hourly task for this chat, on the hour America/Chicago. Ordinary runs must not modify schedules. No delegation needed for the bounded inventory.

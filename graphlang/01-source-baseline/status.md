@@ -1,0 +1,12 @@
+# Source baseline status
+
+## 2026-10-28 — completed inventory
+
+- Assignment: CIO owns graphlang/; selected graphlang/01-source-baseline/objective.md. Inspected Oasis main b8b740a5765d1b6d61a185bc628bb80175364398, AGENTS.md, README, root/branch objectives, all descendants, sibling logs and linked browser runtime dependency. No source-specific AGENTS.md exists at the inspected implementation commit.
+- Selection: introduction commit d385691583ea19ba51cc6b1cffc7607b9400d878, path tie-break among four siblings; later leaves have unmet baseline/semantics dependencies. No visible active overlap in tree/logs, open issues/PRs or branches; unseen external work is not ruled out.
+- Assessor: Codex (exact runtime model identifier unavailable). Pre-action confidence 90%: small complete source tree and four finite inventory criteria make read-only inspection and evidence checks feasible in one run. This is judgment, not measured probability. Progress initially null; now 100% against four reviewed baseline criteria, not language completion. Completed-node next-action confidence null.
+- Work: pinned all 20 source files and tree metadata; wrote claim/evidence matrix, representation ambiguities and prioritized implementation requests with acceptance cases. Source and textbook repository untouched. No proposed semantics adopted.
+- Verification actually executed: python3 graphlang/01-source-baseline/verify_baseline.py; [result](verification.json) passes all 20 Git blob identities/sizes, file-set completeness, declared script inventory, placeholder checks and graph fixture structure/positions/asymmetry. [Acceptance review](README.md) maps all four criteria. This verifies offline source evidence, not Svelte rendering, route handling, build compatibility or evaluation.
+- Blockers: none for inventory. Reproducible application build, real execution contract and runtime evidence remain missing; implementation writes require separate authorization. No outreach, spending or deployment.
+- Next action: parent may select 02-minimal-semantics; preserve the unordered-incidence/asymmetric-matrix discrepancy as a decision to resolve, not an implicit directed-language choice. No founder decision required for candidate drafting.
+- Publication: recheck default head and scoped subtree; create commit based on latest head, then update main only with expected-head lease and force=false. Inspect published changed paths and compare committed content. No delegation used.

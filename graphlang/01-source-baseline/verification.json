@@ -1,0 +1,7 @@
+{
+  "result": "pass",
+  "source_commit": "6e575510ea5346dad35d75b41d4492b05ed75548",
+  "verified_blobs": 20,
+  "evidence_kind": "offline source integrity and fixture inspection",
+  "application_or_evaluator_executed": false
+}

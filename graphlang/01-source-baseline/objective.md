@@ -1,8 +1,8 @@
 ---
 role: Upper Leadership
-status: planned
-progress_percent: null
-confidence_percent: 90
+status: completed
+progress_percent: 100
+confidence_percent: null
 assessed_by: "Codex (exact model identifier unavailable)"
 assessed_on: "2026-10-28"
 scope: "graphlang/01-source-baseline/"
@@ -18,4 +18,4 @@ Acceptance criteria:
 - Identify model/representation ambiguities and missing executable evidence without prescribing unapproved semantics.
 - Record a prioritized implementation request list with concrete acceptance cases and scope/authorization dependencies.
 
-Next action: inspect the current implementation and write/check the evidence matrix. Confidence 90% for this bounded inspection, not for proving runtime readiness. No prerequisite blocks read-only baseline work.
+Acceptance evidence: [baseline and criterion review](README.md), [pinned source snapshot](source-snapshot.json), and [executed offline verification](verification.json). No remaining baseline action; downstream semantics work is now eligible.
