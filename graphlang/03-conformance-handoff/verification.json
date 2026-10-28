@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-28",
+  "python": "3.12.14",
+  "package_check": "pass",
+  "cases": 26,
+  "rules": 8,
+  "harness_tests": 10,
+  "harness_tests_passed": 10,
+  "runtime": "not_run",
+  "evidence_kind": "package_and_mock_harness_only",
+  "commands": [
+    "python3 graphlang/03-conformance-handoff/verify.py",
+    "python3 -m unittest discover -s graphlang/03-conformance-handoff -p test_verify.py -v"
+  ],
+  "limitations": [
+    "No runtime invoked",
+    "No accepted semantics",
+    "Raw transport and remaining boundary cases incomplete"
+  ]
+}

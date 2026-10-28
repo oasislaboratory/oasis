@@ -30,3 +30,10 @@
 - Continuing mandate remains ongoing with null progress. Next-action confidence 80% concerns preparing/checking a candidate conformance package, not successful runtime integration.
 - Source head remains 6e575510ea5346dad35d75b41d4492b05ed75548. No source, textbook, sibling, shared-policy or schedule writes. No delegation needed.
 - Next eligible leaf: 03-conformance-handoff, candidate-only until founder accepts semantics. Real implementation remains gated on separate authorization. CTO handoff mismatch and founder choice are recorded in the contract; no production compatibility is claimed.
+
+## 2026-10-28 — candidate conformance fixtures
+
+- Advanced oldest eligible [03-conformance-handoff](03-conformance-handoff/objective.md): 26 candidate fixtures, capture comparison protocol and scoped implementation/CTO requests. [Package and gaps](03-conformance-handoff/README.md).
+- Executed package checks and ten mock-harness self-tests pass; [verification](03-conformance-handoff/verification.json). No Graph Lang evaluator or product behavior tested. Source head unchanged; no source/sibling/shared-policy/schedule writes.
+- Assessor Codex (exact runtime model identifier unavailable); confidence 80% for this bounded increment and the next boundary-fixture review. Leaf remains in_progress and progress null: raw transport ambiguities and coverage gaps remain, and P0 is not adopted. Continuing mandate remains ongoing with null progress.
+- Next: close candidate transport/boundary gaps, then reassess; 04 may use this candidate protocol for documentation review without implying runtime conformance. Existing founder adoption decision remains open; no new decision required for further candidate preparation.
