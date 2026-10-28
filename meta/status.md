@@ -14,3 +14,12 @@
 - Next eligible leaf: `meta/01-baseline/objective.md`. Later stages depend on baseline/protocol evidence and must not execute prematurely.
 - Cross-branch requests: none required to begin. Read sibling evidence without editing it; document telemetry gaps before requesting changes.
 - Founder decision: none needed for this decomposition. Any future prompt/schedule/allocation change requires a separate decision.
+
+## 2026-10-28 — baseline completed
+- Selected [01-baseline](01-baseline/objective.md) by introduction commit/path ordering; completed its four bounded acceptance criteria. [Package](01-baseline/README.md) and [verification](01-baseline/verification/README.md) supply evidence. Continuing Meta mandate remains ongoing, progress null; structural counts do not establish allocation gains.
+- Assessor: Codex (GPT-6; exact runtime identifier unavailable). Pre-action leaf confidence 90%; next-action branch confidence 85% for authoring/checking the experiment protocol, not proving a benefit.
+- Frozen input 8adbbd44f71074907e717b747dcd07111ef5e1e8: 11 objectives, two planning logs, zero completed objectives. Elapsed time, tokens, cost and customer outcomes unknown. Source Git blob hashes checked; reproducible extractor/schema passes; five negative cases reject invalid evidence/scope/metadata.
+- Delegation: one exclusive verification/ worker produced code but terminated with model capacity error before final verification. Parent reviewed code, completed tests and accepts only parent-reproduced results. No worker edited ancestors; parent reconciled this summary.
+- Overlap: no active Meta assignment evidenced in current tree/logs/open issues/PRs; existing Meta task was paused at inspection. User explicitly requested hourly recurrence; only that existing task was resumed, preserving its on-the-hour schedule. No sibling task changed. Recurring execution retains the prohibition on schedule mutations.
+- Next eligible leaf: [02-experiment-design](02-experiment-design/objective.md), now unblocked. Define protocol/manifest before either variant executes. 03-evaluate-allocation remains prerequisite-gated by a frozen protocol (its planned metadata is not evidence of eligibility).
+- Cross-branch requests: none required; optional existing run/verification evidence may be incorporated read-only. Retain current allocation pending comparable evidence. Founder decision: none.

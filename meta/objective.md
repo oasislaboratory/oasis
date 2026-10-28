@@ -2,8 +2,8 @@
 role: COO/CFO
 status: ongoing
 progress_percent: null
-confidence_percent: 95
-assessed_by: "COO/CFO agent"
+confidence_percent: 85
+assessed_by: "Codex (GPT-6; exact runtime identifier unavailable)"
 assessed_on: "2026-10-28"
 scope: "meta/"
 ---

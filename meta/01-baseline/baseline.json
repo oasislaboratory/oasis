@@ -1,0 +1,157 @@
+{
+  "repository": "oasislaboratory/oasis",
+  "commit": "8adbbd44f71074907e717b747dcd07111ef5e1e8",
+  "assessed_on": "2026-10-28",
+  "objectives": [
+    {
+      "path": "graphbrowser/01-workflow-contract/objective.md",
+      "role": "Upper Leadership",
+      "status": "planned",
+      "progress_percent": null,
+      "confidence_percent": 90,
+      "scope": "graphbrowser/01-workflow-contract/",
+      "status_path": null,
+      "evidence_links": []
+    },
+    {
+      "path": "graphbrowser/02-editor-prototype/objective.md",
+      "role": "Upper Leadership",
+      "status": "planned",
+      "progress_percent": null,
+      "confidence_percent": 75,
+      "scope": "graphbrowser/02-editor-prototype/",
+      "status_path": null,
+      "evidence_links": [
+        "../01-workflow-contract/objective.md"
+      ]
+    },
+    {
+      "path": "graphbrowser/03-runtime-environment/objective.md",
+      "role": "Upper Leadership",
+      "status": "planned",
+      "progress_percent": null,
+      "confidence_percent": 75,
+      "scope": "graphbrowser/03-runtime-environment/",
+      "status_path": null,
+      "evidence_links": [
+        "../../graphlang/objective.md",
+        "../01-workflow-contract/objective.md"
+      ]
+    },
+    {
+      "path": "graphbrowser/04-release-validation/objective.md",
+      "role": "Upper Leadership",
+      "status": "planned",
+      "progress_percent": null,
+      "confidence_percent": 80,
+      "scope": "graphbrowser/04-release-validation/",
+      "status_path": null,
+      "evidence_links": [
+        "../02-editor-prototype/objective.md",
+        "../03-runtime-environment/objective.md"
+      ]
+    },
+    {
+      "path": "graphbrowser/objective.md",
+      "role": "CTO",
+      "status": "ongoing",
+      "progress_percent": null,
+      "confidence_percent": 95,
+      "scope": "graphbrowser/",
+      "status_path": "graphbrowser/status.md",
+      "evidence_links": [
+        "01-workflow-contract/objective.md",
+        "02-editor-prototype/objective.md",
+        "03-runtime-environment/objective.md",
+        "04-release-validation/objective.md",
+        "https://github.com/oasislaboratory/graph-lang/tree/6e575510ea5346dad35d75b41d4492b05ed75548",
+        "https://github.com/oasislaboratory/oasis/commit/2ce6d178333f6e6d78ff30ac5ca37c2c719ee0e0",
+        "https://github.com/oasislaboratory/oasis/commit/4635b40da1a33270c48d86ba97117c4117ba06ed"
+      ]
+    },
+    {
+      "path": "graphlang/objective.md",
+      "role": "CIO",
+      "status": "ongoing",
+      "progress_percent": null,
+      "confidence_percent": null,
+      "scope": "graphlang/",
+      "status_path": null,
+      "evidence_links": [
+        "https://github.com/oasislaboratory/graph-lang"
+      ]
+    },
+    {
+      "path": "meta/01-baseline/objective.md",
+      "role": "Upper Leadership",
+      "status": "planned",
+      "progress_percent": null,
+      "confidence_percent": 90,
+      "scope": "meta/01-baseline/",
+      "status_path": null,
+      "evidence_links": []
+    },
+    {
+      "path": "meta/02-experiment-design/objective.md",
+      "role": "Upper Leadership",
+      "status": "planned",
+      "progress_percent": null,
+      "confidence_percent": 85,
+      "scope": "meta/02-experiment-design/",
+      "status_path": null,
+      "evidence_links": [
+        "../01-baseline/objective.md"
+      ]
+    },
+    {
+      "path": "meta/03-evaluate-allocation/objective.md",
+      "role": "Upper Leadership",
+      "status": "planned",
+      "progress_percent": null,
+      "confidence_percent": 70,
+      "scope": "meta/03-evaluate-allocation/",
+      "status_path": null,
+      "evidence_links": [
+        "../02-experiment-design/objective.md"
+      ]
+    },
+    {
+      "path": "meta/objective.md",
+      "role": "COO/CFO",
+      "status": "ongoing",
+      "progress_percent": null,
+      "confidence_percent": 95,
+      "scope": "meta/",
+      "status_path": "meta/status.md",
+      "evidence_links": [
+        "../AGENTS.md#coocfo-advisory-authority",
+        "01-baseline/objective.md",
+        "02-experiment-design/objective.md",
+        "03-evaluate-allocation/objective.md",
+        "https://github.com/oasislaboratory/oasis/commit/07bf82ba950dbef1a4cde22ed0a068f3c1ec5c78",
+        "https://github.com/oasislaboratory/oasis/commit/2ce6d178333f6e6d78ff30ac5ca37c2c719ee0e0"
+      ]
+    },
+    {
+      "path": "objective.md",
+      "role": "CEO",
+      "status": "ongoing",
+      "progress_percent": null,
+      "confidence_percent": null,
+      "scope": ".",
+      "status_path": null,
+      "evidence_links": []
+    }
+  ],
+  "counts": {
+    "objectives": 11,
+    "status_logs": 2,
+    "completed_objectives": 0
+  },
+  "measurement_limits": [
+    "Structural snapshot only; no measured agent productivity.",
+    "No verified completed leaf at input commit. Planning/decomposition logs are not product or customer evidence.",
+    "Elapsed duration, token usage and monetary cost are unavailable; null, never inferred from commit timestamps.",
+    "Linked evidence is indexed, not independently validated by the extractor."
+  ]
+}
