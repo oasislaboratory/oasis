@@ -1,1 +1,0 @@
-Every supported graphlang construct and operation has reference documentation stating its syntax or representation, meaning, inputs, outputs, and error behavior, with a runnable example. The reference explains which category-theoretic concepts each construct realizes and identifies any limits on that correspondence.

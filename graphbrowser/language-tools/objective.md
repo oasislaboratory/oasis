@@ -1,1 +1,0 @@
-A user can validate a graph and invoke the documented graphlang operations needed by the worked applications from the browser, inspect their inputs and results, and understand reported failures. The IDE uses graphlang's reference semantics, with shared examples verifying agreement between browser and language behavior.

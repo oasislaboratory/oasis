@@ -1,1 +1,0 @@
-A user unfamiliar with the implementation can follow the documented setup and complete one useful graph workflow: create or import a graph, navigate and edit it, validate it, run a supported computation, save it, and reopen it. Record the observed result and resolve every blocking usability or documentation issue found in that workflow.

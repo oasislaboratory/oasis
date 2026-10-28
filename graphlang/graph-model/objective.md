@@ -1,1 +1,0 @@
-The recursive vertex-vector and morphism-matrix representation has a precise, implementation-independent specification covering supported values, valid structure, addressing, nesting, and the interpretation of morphisms. Valid and invalid examples exercise every specified rule; proposed semantics and unresolved questions are explicitly distinguished from implemented behavior.

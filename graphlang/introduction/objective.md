@@ -1,1 +1,0 @@
-A reader with no prior category theory can work through a plain-language introduction to objects, morphisms, identity, composition, and their laws, using concrete graph examples. Each concept is connected to an executable graphlang example, and exercises with worked answers let the reader check their understanding.

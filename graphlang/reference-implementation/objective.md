@@ -1,1 +1,0 @@
-A runnable reference implementation can construct, validate, inspect, and evaluate the documented graphlang examples with deterministic results. Executable checks cover the specified rules, supported identity and composition laws, and invalid inputs; the language model remains independent of browser rendering and persistence.

@@ -1,1 +1,0 @@
-The textbook includes complete, reproducible applications that progress from a small graph through a recursive graph to a useful graph computation. Each application connects the motivating question, category-theoretic explanation, graphlang representation, executable source, and expected result, and includes a graphlang-to-JSON interchange example usable by graphbrowser.

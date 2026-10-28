@@ -1,1 +1,0 @@
-A reader unfamiliar with the implementation can use the textbook and reference from a clean checkout to run the examples, complete a documented exercise, and build one new graphlang example without undocumented help. Record the observed outcome and resolve any blocking gaps in the explanations, setup, or implementation.

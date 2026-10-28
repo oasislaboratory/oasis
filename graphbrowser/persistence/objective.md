@@ -1,1 +1,0 @@
-A user can save an edited graph, close the session, and reopen it with its values, nesting, and morphisms preserved. Import and export round-trip through graphlang's documented interchange format with semantic equivalence; storage is accessed through a replaceable adapter.
