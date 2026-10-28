@@ -42,3 +42,9 @@
 
 - Advanced [03](03-conformance-handoff/objective.md) with 16 additional boundary fixtures (42 total) and stricter evidence JSON/suite matching. [Verification](03-conformance-handoff/verification.json): package check and 17 harness self-tests pass; no runtime executed.
 - Leaf remains in_progress with null progress; mandate ongoing/null. Source head unchanged. Next: candidate raw transport/error and integer-lexical proposal; adoption remains pending. No new founder decision, source/sibling edits or schedule changes.
+
+## 2026-10-28 — transport proposal and documentation handoff
+
+- Prepared candidate T0 transport/numeric rules and 30 exact byte fixtures under 03; package integrity and all 25 combined evidence-checker tests pass. Parser/runtime behavior remains not_run. [Transport proposal](03-conformance-handoff/transport.md).
+- 03 is now blocked on P0/T0 adoption, progress/confidence null. Further source implementation requires separate authorization. This does not block candidate documentation work: advanced 04 with a six-row pinned-source traceability matrix; next action is proposed passages and review criteria, confidence 85%.
+- Continuing mandate stays ongoing, progress null. Assessor Codex (GPT-6; exact runtime identifier unavailable). Only graphlang/ changed; source head unchanged. Founder decision is the concrete combined P0/T0 experiment proposal, not a claim of production readiness.

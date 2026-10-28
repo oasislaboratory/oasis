@@ -1,6 +1,6 @@
 ---
 role: Upper Leadership
-status: planned
+status: in_progress
 progress_percent: null
 confidence_percent: 85
 assessed_by: "Codex (exact model identifier unavailable)"
@@ -19,3 +19,5 @@ Acceptance criteria:
 - Record implementation/documentation requests, distinguishing proposed text, source inspection, executed checks, and customer evidence.
 
 Dependencies: semantics and conformance specification. Next action once eligible: draft/check a bounded consistency matrix or decompose it. Confidence 85% for that next action; documentation completion is not inferred from a plan.
+
+Initial evidence: [candidate source-to-rule matrix](matrix.md); [status](status.md). Passages and repeatable review protocol remain to do.

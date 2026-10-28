@@ -1,6 +1,6 @@
 # Candidate P0 conformance handoff
 
-Disposition: candidate only. [P0 rules](../02-minimal-semantics/contract.md) at Oasis commit `4fc03a76c8f4faa7014173deba86c348b08c3ab0` are not founder-approved. Source head remains [6e57551](https://github.com/oasislaboratory/graph-lang/tree/6e575510ea5346dad35d75b41d4492b05ed75548) as of 2042-10-28. This package tests its own evidence machinery, not a Graph Lang runtime.
+Disposition: candidate only. [P0 rules](../02-minimal-semantics/contract.md) at Oasis commit `4fc03a76c8f4faa7014173deba86c348b08c3ab0` are not founder-approved. Source head remains [6e57551](https://github.com/oasislaboratory/graph-lang/tree/6e575510ea5346dad35d75b41d4492b05ed75548) as of 2026-10-28. This package tests its own evidence machinery, not a Graph Lang runtime.
 
 ## Input and output boundary
 
@@ -42,9 +42,9 @@ The illustrative single result is incomplete: include each of the 42 IDs exactly
 
 ## Remaining acceptance gaps
 
-- No accepted contract or actual runtime capture exists. The leaf remains in progress, with progress percentage unset; candidate preparation is useful but does not meet the accepted-contract wording of criterion 2.
-- Byte-level cases remain to specify: duplicate keys, malformed JSON, Unicode decoding/scalar validity, oversized transport and parser-depth exhaustion. P0 does not assign every parse/envelope failure an unambiguous code; resolve this before freezing a transport oracle.
-- Exact/over-limit graph sizes (64/65), label and edge lengths (128/129), non-BMP scalar counting, path/budget limits (1025 vertices/1024 steps), both carrier endpoints and invalid booleans/empty edge names now have fixtures. Integer lexical forms and byte-level cases remain open. The suite is bounded, not exhaustive conformance.
+- No accepted contract or actual runtime capture exists. The leaf is blocked on founder adoption, with progress percentage unset; candidate preparation does not meet the accepted-contract wording of criterion 2.
+- [Candidate T0](transport.md) now proposes these transport/error decisions with [30 byte cases](transport-fixtures.json). They require review/adoption; actual parser and runtime behavior remain untested.
+- Exact/over-limit graph sizes (64/65), label and edge lengths (128/129), non-BMP scalar counting, path/budget limits (1025 vertices/1024 steps), both carrier endpoints and invalid booleans/empty edge names now have fixtures. Numeric spellings and byte-level errors are now specified in proposed T0. The suite is bounded, not exhaustive conformance.
 - External cancellation, wall-clock deadlines, adapter unavailability, persistent state and UI error rendering are separate integration tests. No hosting, storage durability or customer outcome follows from these checks.
 
 ## Implementation request and CTO handoff
@@ -58,7 +58,7 @@ Local request to CTO: [the current boundary draft](../../graphbrowser/03-runtime
 | Objective criterion | Evidence and limit |
 | --- | --- |
 | Versioned I/O and environment | P0 plus concrete fixtures; candidate only |
-| Required behavioral cases | 42 expected outcomes; adoption and runtime evidence absent; raw-input coverage incomplete; value-level boundaries expanded |
+| Required behavioral cases | 42 expected outcomes; adoption and runtime evidence absent; T0 adds 30 candidate raw-input cases; parser/runtime unverified |
 | Reproducible checks and mapping | verify.py, 17 harness self-tests, fixture rules/derivations; no evaluator executed |
 | Implementation handoff | Scoped request above with explicit gates and missing capabilities |
 
@@ -66,4 +66,6 @@ Local request to CTO: [the current boundary draft](../../graphbrowser/03-runtime
 
 ## Evidence reader versus language transport
 
-Strict JSON reading here applies to fixture/capture evidence files only. It does not settle P0 transport semantics or test a runtime parser. Python integers and typed JSON comparison are evidence conventions, not a decision about whether wire inputs such as `2.0` or `2e0` denote valid language integers. A future transport proposal must resolve duplicate keys at different nesting levels, malformed/oversized input, Unicode failures, top-level envelope failures and exact numeric lexical handling before freezing their expected error codes. Do not silently promote evidence-reader behavior into language rules.
+Strict JSON reading here applies to fixture/capture evidence files only. It does not settle P0 transport semantics or test a runtime parser. Python integers and typed JSON comparison are evidence conventions, not a decision about whether wire inputs such as `2.0` or `2e0` denote valid language integers. T0 now proposes these decisions, including exact decimal value semantics for integer fields. It remains separate from the evidence reader and requires explicit adoption. Do not silently promote evidence-reader behavior into language rules.
+
+Transport verification: `python3 graphlang/03-conformance-handoff/verify_transport.py`. Run all evidence self-tests with `python3 -m unittest discover -s graphlang/03-conformance-handoff -p "test_*.py" -v`. [Transport check record](transport-verification.json).

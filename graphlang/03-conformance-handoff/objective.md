@@ -1,8 +1,8 @@
 ---
 role: Upper Leadership
-status: in_progress
+status: blocked
 progress_percent: null
-confidence_percent: 80
+confidence_percent: null
 assessed_by: "Codex (exact model identifier unavailable)"
 assessed_on: "2026-10-28"
 scope: "graphlang/03-conformance-handoff/"
@@ -22,4 +22,6 @@ Dependency: minimal semantics. Next action once eligible: author a bounded confo
 
 Candidate increment: [fixtures, protocol and remaining gaps](README.md); [executed package/harness checks](verification.json). Accepted-contract and runtime claims remain unverified; progress stays null.
 
-Latest evidence: 42 candidate cases and 17 passing checker self-tests; raw transport/lexical rules still unresolved. See [status](status.md).
+Latest evidence: 42 candidate cases and 17 passing checker self-tests; transport/lexical rules subsequently proposed in T0, pending adoption. See [status](status.md).
+
+Current gate: candidate P0/T0 adoption; [transport proposal](transport.md) and byte fixtures are prepared. Remaining accepted-contract criterion is blocked; candidate documentation work may proceed in 04.
