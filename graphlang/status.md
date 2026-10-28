@@ -23,3 +23,10 @@
 - No visible overlapping assignment in current tree, status logs, open issues/PRs or branches. Main was the only branch. Source baseline introduced in d385691583ea19ba51cc6b1cffc7607b9400d878 with its siblings; path order and prerequisite gates select 01.
 - Next eligible leaf: [minimal semantics](02-minimal-semantics/objective.md). Draft a candidate contract, retaining consequential choices as proposals. No founder decision is needed to begin that work. Source modifications remain unauthorized.
 - Created the user-requested dedicated hourly task for this chat, on the hour America/Chicago. Ordinary runs must not modify schedules. No delegation needed for the bounded inventory.
+
+## 2026-10-28 — candidate minimal semantics specified
+
+- Completed [minimal semantics](02-minimal-semantics/objective.md) as a proposal, not an adopted language. [Contract](02-minimal-semantics/contract.md) covers all four specification criteria and 13 hand-worked examples. Pre-action confidence 80%; model label Codex (exact runtime model identifier unavailable).
+- Continuing mandate remains ongoing with null progress. Next-action confidence 80% concerns preparing/checking a candidate conformance package, not successful runtime integration.
+- Source head remains 6e575510ea5346dad35d75b41d4492b05ed75548. No source, textbook, sibling, shared-policy or schedule writes. No delegation needed.
+- Next eligible leaf: 03-conformance-handoff, candidate-only until founder accepts semantics. Real implementation remains gated on separate authorization. CTO handoff mismatch and founder choice are recorded in the contract; no production compatibility is claimed.

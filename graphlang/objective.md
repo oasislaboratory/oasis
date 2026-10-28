@@ -2,7 +2,7 @@
 role: CIO
 status: ongoing
 progress_percent: null
-confidence_percent: 95
+confidence_percent: 80
 assessed_by: "Codex (exact model identifier unavailable)"
 assessed_on: "2026-10-28"
 scope: "graphlang/"

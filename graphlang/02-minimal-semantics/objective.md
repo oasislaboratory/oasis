@@ -1,8 +1,8 @@
 ---
 role: Upper Leadership
-status: planned
-progress_percent: null
-confidence_percent: 80
+status: completed
+progress_percent: 100
+confidence_percent: null
 assessed_by: "Codex (exact model identifier unavailable)"
 assessed_on: "2026-10-28"
 scope: "graphlang/02-minimal-semantics/"
@@ -19,3 +19,5 @@ Acceptance criteria:
 - Link each rule to current evidence or an explicit proposed change; record unresolved consequential choices for founder review.
 
 Dependency: source baseline. Next action once eligible: draft/check one minimal contract or decompose it. Confidence 80% for that bounded next action; it does not claim that a language design can be validated in one run.
+
+Verification: [candidate contract and acceptance review](contract.md), [run record](status.md). All four specification criteria are met; adoption and runtime conformance remain unverified.
