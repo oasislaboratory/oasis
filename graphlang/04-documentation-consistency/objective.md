@@ -1,8 +1,8 @@
 ---
 role: Upper Leadership
-status: in_progress
-progress_percent: null
-confidence_percent: 85
+status: completed
+progress_percent: 100
+confidence_percent: null
 assessed_by: "Codex (exact model identifier unavailable)"
 assessed_on: "2026-10-28"
 scope: "graphlang/04-documentation-consistency/"
@@ -21,3 +21,5 @@ Acceptance criteria:
 Dependencies: semantics and conformance specification. Next action once eligible: draft/check a bounded consistency matrix or decompose it. Confidence 85% for that next action; documentation completion is not inferred from a plan.
 
 Initial evidence: [candidate source-to-rule matrix](matrix.md); [status](status.md). Passages and repeatable review protocol remain to do.
+
+Completion evidence: [proposed passages](passages.md), [repeatable review and acceptance mapping](review.md), [verification](verification.json). All four planning criteria met; source/textbook implementation and runtime consistency remain unverified.

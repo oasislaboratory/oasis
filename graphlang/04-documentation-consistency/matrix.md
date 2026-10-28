@@ -13,4 +13,4 @@ Source inspection: [graph-lang at 6e57551](https://github.com/oasislaboratory/gr
 
 Links: [P0](../02-minimal-semantics/contract.md), [value fixtures](../03-conformance-handoff/fixtures.json), [T0](../03-conformance-handoff/transport.md), [byte fixtures](../03-conformance-handoff/transport-fixtures.json).
 
-Next bounded action: draft concise proposed passages/example outlines for the six rows, then define a reproducible docs/source review with explicit pass/fail evidence. This matrix is source-to-proposal traceability, not completed documentation consistency. No implementation/textbook file has been changed; no evaluator, application or customer behavior was tested.
+Completed planning follow-through: [proposed passages/outlines](passages.md), [repeatable review with pass/fail criteria](review.md), and [verification record](verification.json). This is source-to-proposal traceability; no implementation/textbook file was changed and no evaluator, application or customer behavior was tested.
