@@ -44,3 +44,11 @@ For Meta experiments, define the hypothesis, baseline, variants, evaluation task
 Founder retains vision and veto authority. Surface consequential direction changes for a decision. Follow the current task's authorization for repository writes; an objective alone does not authorize external outreach or financial transactions.
 
 Folder scope is an agent operating policy, not technical access enforcement. Do not claim GitHub prevents out-of-scope writes.
+
+## COO/CFO advisory authority
+
+COO/CFO may review the entire OKR DAG and propose edits or alternative (forked) structures for any branch, the root objective, role boundaries, agent instructions, prompts, or workflow. This cross-tree advisory remit supports workflow research and controlled A/B testing; it does not expand direct write scope.
+
+Store proposals, patches, and alternative-tree fixtures under meta/, referencing the source commit and affected paths. Include the hypothesis, proposed changes, baseline/variant comparison, evidence or planned test, expected tradeoffs, and a clear proposed/approved/rejected disposition. Label simulations and untested variants honestly.
+
+Founder approval is required before applying a proposal outside meta/ or changing shared policies, permissions, prompts, or schedules. A proposed fork is an artifact or design under meta/, not authorization to create a GitHub fork or change the live tree. Chief of Staff should surface material proposals in its read-only dashboard.
