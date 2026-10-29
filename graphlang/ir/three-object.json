@@ -1,0 +1,105 @@
+{
+  "format": "oasis-ir-experiment-1",
+  "cells": [
+    {
+      "i": 0,
+      "j": 0,
+      "arrows": [
+        {
+          "id": "id_0",
+          "identity": true,
+          "value": {
+            "kind": "json",
+            "data": "A"
+          }
+        },
+        {
+          "id": "loop_0",
+          "identity": false,
+          "value": {
+            "kind": "json",
+            "data": "nonidentity endomorphism"
+          }
+        }
+      ]
+    },
+    {
+      "i": 1,
+      "j": 1,
+      "arrows": [
+        {
+          "id": "id_1",
+          "identity": true,
+          "value": {
+            "kind": "json",
+            "data": "B"
+          }
+        }
+      ]
+    },
+    {
+      "i": 2,
+      "j": 2,
+      "arrows": [
+        {
+          "id": "id_2",
+          "identity": true,
+          "value": {
+            "kind": "json",
+            "data": "C"
+          }
+        }
+      ]
+    },
+    {
+      "i": 0,
+      "j": 1,
+      "arrows": [
+        {
+          "id": "f",
+          "identity": false,
+          "value": {
+            "kind": "json",
+            "data": "first"
+          }
+        },
+        {
+          "id": "g",
+          "identity": false,
+          "value": {
+            "kind": "json",
+            "data": "parallel"
+          }
+        }
+      ]
+    },
+    {
+      "i": 1,
+      "j": 2,
+      "arrows": [
+        {
+          "id": "h",
+          "identity": false,
+          "value": {
+            "kind": "json",
+            "data": null
+          }
+        }
+      ]
+    },
+    {
+      "i": 2,
+      "j": 0,
+      "arrows": [
+        {
+          "id": "k",
+          "identity": false,
+          "value": {
+            "kind": "json",
+            "data": null
+          }
+        }
+      ]
+    }
+  ]
+}
