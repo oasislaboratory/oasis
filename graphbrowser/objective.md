@@ -9,11 +9,11 @@
 
 Deliver an interactive browser environment that routes, renders, navigates, edits, and persists organizational graphs. Start with filesystem-backed routing and Git-backed state for practical dogfooding, without tying the underlying graph model to those choices.
 
-## Proposed third-level key results — awaiting founder approval
+## Approved third-level key results
 
-1. Load a filesystem-backed Oasis objective graph and navigate its objects and relationships through browser routes.
-2. Render and inspect a graph interactively, with a clear connection between visible objects and their underlying representation.
-3. Edit and persist graph changes, reload them reliably, and make updates observable to users.
+1. [Implement filesystem-backed routing](routing/objective.md) — **Approved**.
+2. [Implement interactive graph rendering](rendering/objective.md) — **Approved**.
+3. [Implement editing and persistence](editing/objective.md) — **Approved**.
 
 ## Acceptance evidence
 

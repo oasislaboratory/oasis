@@ -9,11 +9,11 @@
 
 Develop a general, functional, homoiconic, recursive graph language suitable for representing and evaluating graphs independently of the browser and filesystem. Pursue self-hosting without making it a prerequisite for the first useful browser release.
 
-## Proposed third-level key results — awaiting founder approval
+## Approved third-level key results
 
-1. Define a documented graph IR and reference syntax with representative examples and round-trip tests.
-2. Demonstrate recursive functional semantics and a minimal evaluator on test graphs.
-3. Establish a credible self-hosting path and verify an incremental self-hosted capability.
+1. [Define Graph IR and reference syntax](ir/objective.md) — **Approved** · First implementation priority.
+2. [Implement recursive semantics and evaluation](evaluation/objective.md) — **Approved**.
+3. [Develop self-hosting capability](self-hosting/objective.md) — **Approved**.
 
 ## Acceptance evidence
 

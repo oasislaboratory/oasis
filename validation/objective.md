@@ -9,11 +9,11 @@
 
 Use Oasis as the first live organizational graph and test whether Graph Browser improves understanding and coordination for startups, research labs, and AI-native teams. Iterate toward product-market fit using observed behavior rather than feature completion alone.
 
-## Proposed third-level key results — awaiting founder approval
+## Approved third-level key results
 
-1. Dogfood the Oasis OKR DAG through Graph Browser and record concrete usability failures and improvements.
-2. Provide a hosted, usable onboarding path for external evaluators.
-3. Gather qualitative feedback and repeat-usage evidence, prioritize one product improvement, and retest.
+1. [Dogfood Oasis's OKR DAG](dogfooding/objective.md) — **Approved**.
+2. [Host and onboard external users](hosting/objective.md) — **Approved**.
+3. [Validate demand and iterate](feedback/objective.md) — **Approved**.
 
 ## Acceptance evidence
 
