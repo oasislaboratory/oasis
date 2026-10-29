@@ -1,23 +1,17 @@
 # Oasis
 
-[Root objective](objective.md): cultivate this OKR DAG into a startup reaching product-market fit for its olog / graph browser / IDE.
+Oasis develops **Graph Browser**, a browser-based environment for exploring, editing, and operating live organizations as graphs. The goal is to iterate toward product-market fit with startups, research labs, and AI-native teams.
 
-| Role / branch | Responsibility |
-| --- | --- |
-| CIO / [Graph Lang](graphlang/objective.md) | Language, runtime, source, and documentation in the separate graph-lang repository. |
-| CTO / [Graph Browser](graphbrowser/objective.md) | Hosted dashboard / IDE with Graph Lang execution and a persistent database/environment. |
-| COO/CFO / [Meta](meta/objective.md) | The OKR DAG, agent portfolios, performance-based allocation, and experiments on the process itself. |
+The repository is organized as a founder-governed OKR tree. Read [the root objective](objective.md) and [agent instructions](AGENTS.md).
 
-Each objective folder is a node. Nested objective folders are key results that can themselves be decomposed. Use relative Markdown links for cross-branch dependencies and shared results; do not duplicate work or introduce dependency cycles.
+## Objectives
 
-Read [AGENTS.md](AGENTS.md) before selecting or expanding work. These three branches are strategic objectives, not completed results or a claim that product-market fit is guaranteed.
+- [Graph Lang](graphlang/objective.md): general graph computation foundation.
+- [Graph Browser](graphbrowser/objective.md): filesystem-backed browser interface, routing, rendering, and editing.
+- [Product validation](validation/objective.md): dogfooding, hosting, user feedback, and PMF evidence.
 
-## Roles and status
+Git and the filesystem are convenient initial storage and routing mechanisms, **not** Graph Lang's canonical graph model. Graph Lang should remain independent of any particular storage backend or UI.
 
-The root is CEO, controlled by the founder. CIO owns Graph Lang; CTO owns Graph Browser; COO/CFO owns Meta. Deeper objective folders represent Upper Leadership → Senior Engineer → Junior Engineer → Apprentice/Intern. These are responsibility levels; create them only when useful objectives require decomposition.
+## Governance
 
-Every objective carries YAML metadata: `role`, `status`, `progress_percent`, `confidence_percent`, `assessed_by`, `assessed_on`, and `scope`. Current strategic objectives are `ongoing`; percentages are `null` until assessed against evidence and a bounded next action.
-
-Status: `planned` → `in_progress` → `completed`; use `ongoing` for continuing mandates, `blocked` for a missing prerequisite, and `cancelled` for intentionally stopped work.
-
-Agents may edit only their explicitly assigned objective folder and descendants. Ancestors and linked dependencies are readable; sibling changes go to their owner. Root/CEO assignment and shared policy changes require explicit founder authorization. This is an agent operating policy, not a GitHub permission boundary; technical isolation requires scoped tooling or separate review controls.
+The founder owns strategic objectives. Agents may propose key results but require founder review before adding objective nodes or changing strategic scope. Implementation work should be small, testable, and documented with evidence. Three levels of objectives are the default maximum.

@@ -1,54 +1,30 @@
-# Agent instructions
+# Oasis agent operating contract
 
-## Direction and authority
+## Mission
 
-Read the root objective, README, selected objective, its ancestors, children, and linked dependencies. Preserve founder-authored objective text unless explicitly authorized to revise it. Keep communication concise.
+Build and validate Graph Browser as a useful tool for operating live organizations as graphs. Read README.md, the root objective, and relevant branch objectives before working. Current repository state takes precedence over conversation history.
 
-The root is CEO, controlled by the founder. CIO owns graphlang/; CTO owns graphbrowser/; COO/CFO owns meta/. Further depths default to Upper Leadership, Senior Engineer, Junior Engineer, then Apprentice/Intern; deeper nodes retain Apprentice/Intern unless the founder defines another level. Titles describe responsibility, not separate people or automatically spawned agents.
+## Authority
 
-Before writing, identify your assigned objective directory. Edit only files inside that directory and its descendants, including child objectives and local status logs. Read ancestors and siblings for context, but request their owner's changes through your local status log. A title or dependency link grants no additional write authority. Root/CEO assignment and edits to root AGENTS.md or README.md require explicit founder authorization; never infer root assignment from repository access. Existing children owned by other active agents require coordination before overlapping edits.
+- Founder owns the root objective, strategic branches, priorities, and acceptance of proposed key results.
+- Agents may **propose** third-level key results or changes, but must not create objective folders or modify founder-authored objectives without explicit approval.
+- Agents may implement bounded, authorized work in their assigned scope, with tests and concise evidence. Do not silently expand scope.
+- Avoid simulated executive roles, duplicated ownership, and automatic recursive task proliferation.
+- Default maximum OKR depth: 3 levels, counting the root. Any exception needs founder approval.
 
-Graph Lang source/docs live in oasislaboratory/graph-lang. An assignment here does not itself grant write authority in another repository. This repository coordinates objectives and evidence across the three branches.
+## Workflow
 
-## Select and act
+1. Orient: read relevant objectives and inspect the current code, docs, and Git state.
+2. Select one approved, unblocked, high-value increment within the assigned scope.
+3. Execute the smallest useful change, or propose a concise plan if blocked or unapproved.
+4. Verify behavior with appropriate tests or direct inspection; distinguish tested behavior from conjecture.
+5. Update implementation documentation only when warranted; report **Changed / Verified / Blocked / Next** briefly.
 
-1. Within your assigned subtree, select the oldest unfinished, unblocked leaf by the Git commit that introduced its objective.md; break ties by path. A leaf has no child objective folders. Missing status means unfinished.
-2. Estimate confidence in completing and verifying that leaf in one run. Record a short rationale; this is a judgment, not measured probability.
-3. If confidence is at least 50%, execute the bounded work and verify the result.
-4. Otherwise create two to four child folders, each with an objective.md and metadata. Each child should have >50% estimated confidence of being achievable through execution or further recursive decomposition. Explain why the set plausibly advances and covers the parent.
-5. Intermediate objectives may require later decomposition. Children need not make the parent achievable in one subsequent run. Product-market fit requires longitudinal evidence.
-6. Expand only the selected leaf in a run. Stop after decomposition; avoid speculative trees. If blocked, record the missing input and select another eligible leaf within your scope when possible.
+## Design principles
 
-## Objective metadata
-
-Each objective.md starts with YAML fields:
-
-- role: responsibility title for its depth.
-- status: planned, in_progress, ongoing, blocked, completed, or cancelled.
-- progress_percent: 0–100 estimate against explicit acceptance criteria; null when no defensible baseline exists.
-- confidence_percent: 0–100 estimated chance of completing and verifying the stated next action in one run; null before assessment.
-- assessed_by: actual model identifier if available, otherwise an honest agent label; null before assessment.
-- assessed_on: assessment date in YYYY-MM-DD format; null before assessment.
-- scope: repository-relative directory containing this objective.
-
-Keep strategic mandates ongoing. Start bounded children planned; mark in_progress when work starts. Use blocked only for a concrete unmet prerequisite. Completed requires linked verification against the objective's acceptance criteria; cancelled means intentionally stopped.
-
-Reassess percentages when working a node, with rationale and evidence in its local status.md. Distinguish estimated progress from next-action confidence. Do not invent precision, increase progress merely for creating children, or average child percentages without explicit weights and criteria. Continuing mandates can remain ongoing as individual milestones complete.
-
-## Evidence and learning
-
-Keep a brief status.md beside the selected objective: action assessed, confidence/progress rationale, result, verification links, and next dependency. objective.md metadata is the canonical current status; status.md supplies its supporting record. Distinguish plans, source inspection, tested behavior, and customer evidence. Parent owners reconcile their own status; child agents report evidence without editing ancestors.
-
-For Meta experiments, define the hypothesis, baseline, variants, evaluation tasks, metric, budget, and stopping rule before running. Compare equivalent tasks under comparable budgets; record failures and cost as well as wins. Avoid selecting policies solely on their own self-reported scores.
-
-Founder retains vision and veto authority. Surface consequential direction changes for a decision. Follow the current task's authorization for repository writes; an objective alone does not authorize external outreach or financial transactions.
-
-Folder scope is an agent operating policy, not technical access enforcement. Do not claim GitHub prevents out-of-scope writes.
-
-## COO/CFO advisory authority
-
-COO/CFO may review the entire OKR DAG and propose edits or alternative (forked) structures for any branch, the root objective, role boundaries, agent instructions, prompts, or workflow. This cross-tree advisory remit supports workflow research and controlled A/B testing; it does not expand direct write scope.
-
-Store proposals, patches, and alternative-tree fixtures under meta/, referencing the source commit and affected paths. Include the hypothesis, proposed changes, baseline/variant comparison, evidence or planned test, expected tradeoffs, and a clear proposed/approved/rejected disposition. Label simulations and untested variants honestly.
-
-Founder approval is required before applying a proposal outside meta/ or changing shared policies, permissions, prompts, or schedules. A proposed fork is an artifact or design under meta/, not authorization to create a GitHub fork or change the live tree. Chief of Staff should surface material proposals in its read-only dashboard.
+- General graphs at the core; convenient representations at boundaries; useful workflows at the surface.
+- Git/filesystem is an initial backend, not the canonical Graph Lang representation.
+- Keep Graph Lang's source and explanatory documentation aligned.
+- Favor working software, clear evidence, brevity, and user value over elaborate plans.
+- Do not treat a folder, plan, or document as verified product progress.
+- Avoid concurrent conflicting writes; coordinate task ownership and use separate branches when necessary.

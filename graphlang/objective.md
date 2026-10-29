@@ -1,15 +1,24 @@
----
-role: CIO
-status: ongoing
-progress_percent: null
-confidence_percent: 80
-assessed_by: "Codex (exact model identifier unavailable)"
-assessed_on: "2026-10-28"
-scope: "graphlang/"
----
+# KR1 — Graph Lang
 
-# CIO — Graph Lang
+**Parent:** [O0](../objective.md)  
+**Owner:** Founder  
+**Status:** Planned  
+**Depth:** 2 of 3
 
-Develop Graph Lang as the documented, executable graph language underlying Oasis, with its source and research documentation maintained in [oasislaboratory/graph-lang](https://github.com/oasislaboratory/graph-lang).
+## Objective
 
-Keep the language's mathematical model, documented examples, and tested runtime behavior consistent. This branch tracks objectives and evidence; implementation and textbook work belong in the linked repository.
+Develop a general, functional, homoiconic, recursive graph language suitable for representing and evaluating graphs independently of the browser and filesystem. Pursue self-hosting without making it a prerequisite for the first useful browser release.
+
+## Proposed third-level key results — awaiting founder approval
+
+1. Define a documented graph IR and reference syntax with representative examples and round-trip tests.
+2. Demonstrate recursive functional semantics and a minimal evaluator on test graphs.
+3. Establish a credible self-hosting path and verify an incremental self-hosted capability.
+
+## Acceptance evidence
+
+Runnable examples, tests, and matching source/documentation. Clearly distinguish research conjectures, designs, implementations, and verified behavior.
+
+## Boundaries
+
+Git trees, DAGs, and directory hierarchies are graph instances or storage conveniences, not the canonical Graph Lang model. Keep language semantics independent of Graph Browser.
