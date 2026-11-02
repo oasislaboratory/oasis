@@ -1,0 +1,1 @@
+{"name":"oasis","private":true,"scripts":{"dev":"npm --prefix graph-browser/mvp run dev --","setup":"npm --prefix graph-browser/mvp ci","check":"npm --prefix graph-browser/mvp run check","test":"npm --prefix graph-browser/mvp test","build":"npm --prefix graph-browser/mvp run build"}}
