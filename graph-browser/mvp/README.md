@@ -1,4 +1,6 @@
-# Graph Browser MVP
+# Graph Browser — partial MVP baseline
+
+Status: partially complete. The founder verified this baseline runs locally. The revised full MVP requires minimal actual iframe windows, full inline objective editing, fast commits, and enforced root-user/scoped-agent authority with fresh-state reconciliation. See [objective.md](objective.md) and its children; those capabilities are not implemented yet.
 
 A local SvelteKit + TypeScript workspace over Oasis's real objective directories. Expand sibling windows independently, focus an objective by URL, edit working Markdown inline, save to disk, and explicitly commit or push.
 
