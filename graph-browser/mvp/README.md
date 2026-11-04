@@ -1,8 +1,8 @@
 # Graph Browser — partial MVP baseline
 
-Status: partially complete. The founder verified this baseline runs locally. The revised full MVP requires minimal actual iframe windows, full inline objective editing, fast commits, and enforced root-user/scoped-agent authority with fresh-state reconciliation. See [objective.md](objective.md) and its children; those capabilities are not implemented yet.
+Status: partially complete. The founder verified this baseline runs locally. The revised full MVP requires minimal actual iframe windows, full inline objective editing, fast commits, and enforced root-user/scoped-agent authority with fresh-state reconciliation. See [objective.md](objective.md) and its children; the iframe experiment is implemented; authority and fast commits remain pending.
 
-A local SvelteKit + TypeScript workspace over Oasis's real objective directories. Expand sibling windows independently, focus an objective by URL, edit working Markdown inline, save to disk, and explicitly commit or push.
+A local SvelteKit + TypeScript workspace over Oasis's real objective directories. Expand sibling windows independently, focus an objective by URL, edit full Markdown drafts inline, save to disk, and explicitly commit or push.
 
 ## Run
 
@@ -19,11 +19,11 @@ Open the local URL Vite prints (normally http://127.0.0.1:5173). On Windows Powe
 
 1. Expand Graph Browser and PMF: both stay open.
 2. Open MVP to focus `/graph-browser/mvp`.
-3. Click **Edit inline**, enter observations/evidence/next actions, and **Save working state**.
-4. Open **Git workspace**, inspect the changes, enter a message, and **Commit objectives**.
+3. Edit the inline `objective.md` textarea and **Save**. Only changes after the working-state marker can persist; protected-intent edits remain experimental drafts. For files without working state, append a newline, `<!-- oasis:working-state -->`, another newline, and your observations.
+4. Open **Git**, inspect the changes, enter a message, and **Commit objectives**.
 5. Reload: the saved state remains. **Push upstream** is a separate explicit operation.
 
-Existing objective content is treated conservatively as protected founder intent. Editable content starts after the exact `<!-- oasis:working-state -->` line (with surrounding newlines). Save changes only that section of `objective.md`; the UI cannot modify intent or directives. Creating objectives, changing protected text, moving directories, or resolving Git conflicts is currently done in your editor/terminal.
+Existing objective content is treated conservatively as protected founder intent. Editable content starts after the exact `<!-- oasis:working-state -->` line (with surrounding newlines). Save changes only that section of `objective.md`; the server rejects protected-intent changes and cannot modify directives. Full-text drafts stay in per-tab session storage across navigation/reload; a collapsed iframe remains mounted. **Reload saved version** explicitly discards a draft after confirmation. After a conflict, copy the draft, reload the saved version, and reconcile before retrying. Storage failures are reported; in that case keep the window open and copy the draft before navigating. Creating objectives, changing protected text, moving directories, or resolving Git conflicts is currently done in your editor/terminal.
 
 ## Guarantees and limits
 
@@ -45,6 +45,16 @@ npm run build
 ```
 
 Tests use disposable Git repositories: save/commit/reload, inherited directives, stale edits, traversal/symlinks, protected intent, staged-file isolation, and HTML sanitization.
+
+The optional browser acceptance script uses an externally installed Playwright (no project dependency added):
+
+```sh
+node graph-browser/mvp/tests/iframe-browser.mjs
+```
+
+Set `PLAYWRIGHT_MODULE` to its absolute module entry if not resolvable locally, and `CHROMIUM_PATH` for an existing Chromium binary if needed. It starts Vite on port 5174 with a disposable Git repository and checks two siblings plus a grandchild, focus/scrolling, collapse/reopen, navigation/reload drafts, rejected writes, and save/commit/reload.
+
+Iframe limitations: each window scrolls separately at a fixed initial height; nested windows reduce usable width, and loaded frames remain resident when collapsed. Expansion state resets on top-level reload. Draft recovery depends on session storage and is not a durable backup. Only Chromium has been exercised; root authorization and automatic commits are separate objectives.
 
 ## Production Node process (local)
 

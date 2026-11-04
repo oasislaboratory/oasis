@@ -8,7 +8,7 @@ import { promisify } from 'node:util';
 const exec = promisify(execFile);
 export const MARKER = '\n<!-- oasis:working-state -->\n';
 export const root = resolve(process.env.OASIS_REPO || '../..');
-export type Objective = { path: string; title: string; intent: string; working: string; intentHtml: string; workingHtml: string; revision: string; directives: { path: string; content: string }[]; children: Objective[] };
+export type Objective = { path: string; title: string; content: string; intent: string; working: string; intentHtml: string; workingHtml: string; revision: string; directives: { path: string; content: string }[]; children: Objective[] };
 export class Conflict extends Error {}
 function render(markdown: string, path: string) {
   return sanitize(marked.parse(markdown, { async: false }), {
@@ -52,9 +52,20 @@ export class Repository {
       if (!entry.isDirectory() || entry.name.startsWith('.') || ['node_modules', 'build'].includes(entry.name)) continue;
       const child = [path, entry.name].filter(Boolean).join('/');
       try { await this.file(child, 'objective.md'); } catch (e) { if ((e as NodeJS.ErrnoException).code === 'ENOENT') continue; throw e; }
-      children.push(await this.node(child));
+      children.push(await this.node(child, false));
     }
-    return { path, title: /^#\s+(.+)$/m.exec(content)?.[1] || path || 'Oasis', ...sections, intentHtml: render(sections.intent, path), workingHtml: render(sections.working, path), directives, revision: hash(content + JSON.stringify(directives)), children };
+    return { path, content, title: /^#\s+(.+)$/m.exec(content)?.[1] || path || 'Oasis', ...sections, intentHtml: render(sections.intent, path), workingHtml: render(sections.working, path), directives, revision: hash(content + JSON.stringify(directives)), children };
+  }
+  async saveFull(path: string, content: string, revision: string) {
+    const current = await this.node(path, false);
+    if (current.revision !== revision) throw new Conflict('Objective or inherited directives changed. Your draft has been preserved.');
+    const proposed = split(content);
+    if (proposed.intent !== current.intent) throw new Error('Protected intent cannot be saved until root-user authority is implemented. Your draft has been preserved.');
+    if (!content.includes(MARKER)) {
+      if (content === current.content) return current;
+      throw new Error('Working-state marker required');
+    }
+    return this.save(path, proposed.working, revision);
   }
   async save(path: string, working: string, revision: string) {
     if (working.length > 100000 || working.includes(MARKER.trim())) throw new Error('Invalid working state');

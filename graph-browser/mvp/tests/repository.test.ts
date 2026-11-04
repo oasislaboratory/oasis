@@ -36,3 +36,25 @@ test('relative objective links resolve from each embedded node', () => fixture(a
  await writeFile(join(repo.root,'one/objective.md'),'# One\n[child](child/objective.md)\n[parent](../objective.md)');
  const n = await repo.node('one'); assert.match(n.intentHtml,/href="\/one\/child"/); assert.match(n.intentHtml,/href="\/"/);
 }));
+test('full-text experiment preserves protected intent and rejects stale writes', () => fixture(async repo => {
+ const n = await repo.node('one');
+ assert.equal(n.content, await readFile(join(repo.root,'one/objective.md'),'utf8'));
+ await assert.rejects(repo.saveFull('one', '# Replaced\n', n.revision), /Protected intent/);
+ const saved = await repo.saveFull('one', n.content + MARKER + 'Evidence', n.revision);
+ assert.equal(saved.intent,n.intent);
+ assert.equal(saved.working,'Evidence');
+ await assert.rejects(repo.saveFull('one', saved.content + '\nStale', n.revision), Conflict);
+ await assert.rejects(repo.saveFull('one', saved.content + MARKER + 'injection', saved.revision), /Invalid working state/);
+ await repo.commit('Full-text working state');
+ assert.equal((await repo.node('one')).content,saved.content);
+}));
+test('iframe pages load immediate children, each with its own descendant route', () => fixture(async repo => {
+ await mkdir(join(repo.root,'one','grandchild'));
+ await writeFile(join(repo.root,'one','grandchild','objective.md'),'# Grandchild\n');
+ const root = await repo.node();
+ assert.deepEqual(root.children.map(n => n.path),['one','two']);
+ assert.equal(root.children[0].children.length,0);
+ const one = await repo.node('one');
+ assert.equal(one.children[0].path,'one/grandchild');
+ assert.equal((await repo.node('one/grandchild')).content,'# Grandchild\n');
+}));

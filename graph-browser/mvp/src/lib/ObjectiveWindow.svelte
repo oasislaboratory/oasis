@@ -1,49 +1,72 @@
 <script lang="ts">
-  import ObjectiveWindow from './ObjectiveWindow.svelte';
   import type { Objective } from './server/repository';
-  import { untrack } from 'svelte';
-  import { beforeNavigate } from '$app/navigation';
+  import { onMount, untrack } from 'svelte';
   import { invalidateAll } from '$app/navigation';
-  let { node, top = false, onSaved }: { node: Objective; top?: boolean; onSaved: (message: string) => void } = $props();
-  let expanded = $state(untrack(() => top));
-  let editing = $state(false);
-  let draft = $state('');
-  let revision = $state('');
+  let { node }: { node: Objective } = $props();
+  let draft = $state(untrack(() => node.content));
+  let baseline = $state(untrack(() => node.content));
+  let revision = $state(untrack(() => node.revision));
   let busy = $state(false);
   let problem = $state('');
-  beforeNavigate(({ cancel }) => { if (editing && draft !== node.working && !confirm('Leave without saving this draft?')) cancel(); });
-  async function save() {
-    busy = true; problem = '';
+  let message = $state('');
+  const url = (path: string) => '/' + path.split('/').map(encodeURIComponent).join('/');
+  const key = untrack(() => 'oasis-draft:' + node.path);
+  function remember() {
     try {
-      const response = await fetch('/api/action', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'save', path: node.path, working: draft, revision }) });
+      if (draft === baseline) sessionStorage.removeItem(key);
+      else sessionStorage.setItem(key, JSON.stringify({ draft, baseline, revision }));
+    } catch { problem = 'Draft storage unavailable. Keep this window open until saved.'; }
+  }
+  onMount(() => {
+    try {
+      const stored = sessionStorage.getItem(key);
+      if (stored) {
+        const saved = JSON.parse(stored);
+        if (typeof saved.draft === 'string' && typeof saved.baseline === 'string' && typeof saved.revision === 'string') {
+          draft = saved.draft; baseline = saved.baseline; revision = saved.revision;
+          if (revision !== node.revision) problem = 'Objective or directives changed. Compare the current version before retrying.';
+        }
+      }
+    } catch { problem = 'Draft storage unavailable.'; }
+  });
+  async function reload() {
+    if (draft !== baseline && !confirm('Discard this draft and load the saved version?')) return;
+    try {
+      await invalidateAll();
+      draft = baseline = node.content; revision = node.revision; problem = ''; message = ''; remember();
+    } catch (e) { problem = (e as Error).message; }
+  }
+  async function save() {
+    busy = true; problem = ''; message = '';
+    try {
+      const response = await fetch('/api/action', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'saveFull', path: node.path, content: draft, revision }) });
       const result = await response.json();
       if (!response.ok) throw new Error(result.error);
-      editing = false; await invalidateAll(); onSaved(`${node.title} saved to disk. Commit when ready.`);
+      baseline = result.result.content; revision = result.result.revision;
+      remember(); await invalidateAll(); message = 'Saved to disk.';
     } catch (e) { problem = (e as Error).message; } finally { busy = false; }
   }
 </script>
-<svelte:window onbeforeunload={(event) => { if (editing && draft !== node.working) { event.preventDefault(); event.returnValue = ''; } }}/>
-<article class:top class:expanded>
-  <header>
-    <button class="toggle" aria-expanded={expanded} aria-label={`${expanded ? 'Collapse' : 'Expand'} ${node.title}`} onclick={() => expanded = !expanded}>{expanded ? '−' : '+'}</button>
-    <div class="heading"><span class="eyebrow">{node.path || 'ROOT OBJECTIVE'}</span><h2>{node.title}</h2></div>
-    <span class="count">{node.children.length} {node.children.length === 1 ? 'branch' : 'branches'}</span>
-    {#if !top}<a class="focus" href={'/' + node.path.split('/').map(encodeURIComponent).join('/')} aria-label={`Focus ${node.title}`}>Open ↗</a>{/if}
-  </header>
-  {#if expanded}
-    <div class="body">
-      <div class="section-label">DESIRED OUTCOME <span>Protected intent</span></div>
-      <div class="markdown">{@html node.intentHtml}</div>
-      <div class="work-header"><div class="section-label">WORKING STATE</div><button class="small" onclick={() => { if (editing && draft !== node.working && !confirm('Discard unsaved edits?')) return; editing = !editing; draft = node.working; revision = node.revision; problem = ''; }}>{editing ? 'Cancel' : 'Edit inline'}</button></div>
-      {#if editing}
-        <label class="sr-only" for={'edit-' + node.path}>Working state for {node.title}</label>
-        <textarea id={'edit-' + node.path} bind:value={draft} placeholder="## Observed state\nWhat happened?\n\n## Next action\nWhat will you test?" rows="9"></textarea>
-        <div class="save-row"><span>Markdown · saved in objective.md</span><button class="primary" disabled={busy} onclick={save}>{busy ? 'Saving…' : 'Save working state'}</button></div>
-      {:else if node.working}<div class="markdown">{@html node.workingHtml}</div>
-      {:else}<p class="empty">No observations yet. Record progress, evidence, and the next action.</p>{/if}
-      {#if problem}<p class="error" role="alert">{problem}</p>{/if}
-      {#if node.directives.length}<details><summary>Inherited directives <span>{node.directives.length}</span></summary>{#each node.directives as directive}<div class="directive"><strong>{directive.path}</strong><pre>{directive.content}</pre></div>{/each}</details>{/if}
-      {#if node.children.length}<div class="children-label">CHILD OBJECTIVES <span>Expand branches independently</span></div><div class="children">{#each node.children as child (child.path)}<ObjectiveWindow node={child} {onSaved}/>{/each}</div>{/if}
-    </div>
-  {/if}
-</article>
+<svelte:window onbeforeunload={() => remember()}/>
+<h1><a href={url(node.path)} target="_top">{node.path || '/'}</a></h1>
+<label for="objective">objective.md</label>
+<textarea id="objective" aria-label="objective.md" rows="18" bind:value={draft} oninput={(event) => { draft = event.currentTarget.value; remember(); }}></textarea>
+<button disabled={busy} onclick={save}>Save</button>
+<button disabled={busy} onclick={reload}>Reload saved version</button>
+<span>Experimental: protected intent cannot be saved.</span>
+{#if message}<p role="status">{message}</p>{/if}
+{#if problem}<p role="alert">{problem}</p>{/if}
+<details><summary>Current saved version</summary><pre>{node.content}</pre></details>
+{#if node.directives.length}<details><summary>Inherited directives</summary>{#each node.directives as directive}<h2>{directive.path}</h2><pre>{directive.content}</pre>{/each}</details>{/if}
+{#each node.children as child (child.path)}
+  <details>
+    <summary>{child.title} <a href={url(child.path)} target="_top">Open</a></summary>
+    <iframe src={url(child.path)} title={child.path} loading="lazy"></iframe>
+  </details>
+{/each}
+<style>
+  textarea { display: block; box-sizing: border-box; width: 100%; resize: vertical; }
+  iframe { display: block; box-sizing: border-box; width: 100%; height: 32rem; }
+  pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+  h1, h2 { font-size: 1rem; }
+</style>

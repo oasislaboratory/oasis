@@ -11,7 +11,20 @@ Experiment with real nested iframe windows containing full objective.md textarea
 
 <!-- oasis:working-state -->
 ## Status
-Not started. Existing UI uses recursive components and only edits appended working state.
+Iframe experiment implemented and verified. Protected-intent persistence remains dependent on the authority objective; the full MVP is not complete.
 
-## Next action
-Implement the smallest iframe/textarea experiment; keep root-authorized persistence dependent on the authority objective.
+## Observed state — 2026-11-03
+Each filesystem-derived objective URL renders its full objective.md in an inline textarea. Native details elements contain actual lazy-loaded child iframes, recursively. Collapsing a branch retains its iframe document. Decorative UI and copy were removed; Git commit and explicit push controls remain.
+
+Full-text drafts are experimental: the server compares protected intent with the current file and accepts only working-state changes through the existing revision-checked save path. No request-provided root authority is accepted. Draft text and its original revision are retained in per-tab session storage across navigation/reload; failed saves do not clear them. Reload saved version explicitly discards the draft after confirmation. Conflict reconciliation is manual.
+
+## Evidence
+- npm run check: zero errors and warnings; npm test: eight passing repository tests; npm run build: passes.
+- Chromium browser acceptance in a disposable Git repository: two sibling iframes and a nested grandchild remain open independently; textarea focus and scrolling, resized-editor document scrolling, collapse/reopen, stable top-level navigation, and draft recovery after navigation/reload pass.
+- Browser tests preserve drafts on protected-intent rejection, network failure, and stale inherited directives. Explicit reload/reconciliation followed by a working-state save, local commit, and reload passes. Protected root content remains unchanged.
+- tests/iframe-browser.mjs records the repeatable browser experiment, using externally supplied Playwright/Chromium without new project dependencies.
+
+## Limitations and next action
+Nested frames have separate scroll areas and fixed initial heights, consume width at deeper levels, and remain resident after collapse. Expansion state resets on top-level reload. Draft storage is session-only, may be unavailable, and is not a durable backup. Only Chromium was exercised; Firefox, Safari, mobile ergonomics, and large trees remain unverified.
+
+Keep the iframe approach experimental pending founder use. Root/scoped-agent authority, automatic fast commits, and external-writer race protection remain separate work; existing manual Git persistence and its safeguards are preserved. Protected outcomes and inherited directives were not changed.
