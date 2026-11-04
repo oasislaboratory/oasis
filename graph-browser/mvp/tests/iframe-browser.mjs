@@ -31,10 +31,15 @@ try {
   browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH, args: ['--no-sandbox'] });
   const page = await browser.newPage();
   await page.goto(base);
-  const expand = async (frame, name) => frame.locator('summary').filter({ hasText: new RegExp('^' + name + ' Open$') }).click();
-  await expand(page, 'one'); await expand(page, 'two');
+  const expand = async (frame, name) => frame.locator('summary').filter({ hasText: new RegExp('^' + name + '$') }).click();
+  assert.equal(await page.getByRole('link', { name: '/', exact: true }).count(), 1);
+  assert.equal(await page.locator('iframe[title="one"]').isVisible(), true);
+  assert.equal(await page.locator('iframe[title="two"]').isVisible(), true);
   const one = page.frameLocator('iframe[title="one"]');
   const two = page.frameLocator('iframe[title="two"]');
+  assert.equal(await one.locator('iframe[title="one/grandchild"]').isVisible(), false);
+  assert.equal(await one.getByText('Git', { exact: true }).count(), 0);
+  assert.equal(await two.getByText('Git', { exact: true }).count(), 0);
   await expand(one, 'one/grandchild');
   const grand = one.frameLocator('iframe[title="one/grandchild"]');
   await grand.getByRole('textbox', { name: 'objective.md' }).waitFor();
@@ -86,6 +91,7 @@ try {
   await page.waitForFunction(text => document.querySelector('textarea')?.value === text, draft);
   // Explicit discard/reload is needed to adopt the new revision.
   page.on('dialog', dialog => dialog.accept());
+  await page.getByText('Options', { exact: true }).click();
   await page.getByRole('button', { name: 'Reload saved version' }).click();
   await page.waitForFunction(text => document.querySelector('textarea')?.value === text, full);
   await page.getByRole('textbox', { name: 'objective.md' }).fill(full + 'Verified');

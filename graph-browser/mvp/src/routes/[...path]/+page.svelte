@@ -10,9 +10,9 @@
   }
 </script>
 <svelte:head><title>{data.objective.title}</title></svelte:head>
-<nav><a href="/" target="_top">/</a></nav>
 <main>
-  {#key data.objective.path}<ObjectiveWindow node={data.objective}/>{/key}
-  <details><summary>Git</summary><pre>{data.git.branch} {data.git.head}\n{data.git.changes}</pre><label for="commit">Commit message</label><input id="commit" bind:value={commitMessage}/><button disabled={busy} onclick={() => action('commit')}>Commit objectives</button><button disabled={busy} onclick={() => action('push')}>Push upstream</button></details>
+  {#key data.objective.path}<ObjectiveWindow node={data.objective} embedded={data.embedded}/>{/key}
+  {#if data.git}<footer><details><summary>Git</summary><pre>{data.git.branch} {data.git.head}\n{data.git.changes}</pre><label for="commit">Commit message</label><input id="commit" bind:value={commitMessage}/><button disabled={busy} onclick={() => action('commit')}>Commit objectives</button><button disabled={busy} onclick={() => action('push')}>Push upstream</button></details>
   {#if message}<p role="status">{message}</p>{/if}{#if problem}<p role="alert">{problem}</p>{/if}
+  </footer>{/if}
 </main>

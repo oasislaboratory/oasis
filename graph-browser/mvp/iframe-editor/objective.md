@@ -28,3 +28,8 @@ Full-text drafts are experimental: the server compares protected intent with the
 Nested frames have separate scroll areas and fixed initial heights, consume width at deeper levels, and remain resident after collapse. Expansion state resets on top-level reload. Draft storage is session-only, may be unavailable, and is not a durable backup. Only Chromium was exercised; Firefox, Safari, mobile ergonomics, and large trees remain unverified.
 
 Keep the iframe approach experimental pending founder use. Root/scoped-agent authority, automatic fast commits, and external-writer race protection remain separate work; existing manual Git persistence and its safeguards are preserved. Protected outcomes and inherited directives were not changed.
+
+## Founder-use refinement
+The founder found the nested frames but reported excessive menus, duplicate root slashes, and Git controls competing with the prompt. Simplified the view to one path heading, the textarea, children, and a footer. Immediate children open automatically; embedded pages keep their descendants collapsed. Removed the saved-version panel and redundant Open links. Recovery and directives live under footer Options; manual Git controls appear only in the outer page. The embedded query parameter controls presentation only, not authorization.
+
+Validation: type checking has zero errors/warnings, all eight repository tests pass, and the production build passes. Existing save validation and Git safeguards are unchanged. Updated Chromium acceptance passes: one root link, auto-open siblings, initially collapsed grandchild, no Git controls in child frames, independent collapse/reopen, navigation, scrolling, editing, protected/stale/network failures, draft recovery, and save/commit/reload.

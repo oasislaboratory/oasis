@@ -2,7 +2,7 @@
   import type { Objective } from './server/repository';
   import { onMount, untrack } from 'svelte';
   import { invalidateAll } from '$app/navigation';
-  let { node }: { node: Objective } = $props();
+  let { node, embedded = false }: { node: Objective; embedded?: boolean } = $props();
   let draft = $state(untrack(() => node.content));
   let baseline = $state(untrack(() => node.content));
   let revision = $state(untrack(() => node.revision));
@@ -49,21 +49,25 @@
 </script>
 <svelte:window onbeforeunload={() => remember()}/>
 <h1><a href={url(node.path)} target="_top">{node.path || '/'}</a></h1>
-<label for="objective">objective.md</label>
 <textarea id="objective" aria-label="objective.md" rows="18" bind:value={draft} oninput={(event) => { draft = event.currentTarget.value; remember(); }}></textarea>
-<button disabled={busy} onclick={save}>Save</button>
-<button disabled={busy} onclick={reload}>Reload saved version</button>
-<span>Experimental: protected intent cannot be saved.</span>
-{#if message}<p role="status">{message}</p>{/if}
-{#if problem}<p role="alert">{problem}</p>{/if}
-<details><summary>Current saved version</summary><pre>{node.content}</pre></details>
-{#if node.directives.length}<details><summary>Inherited directives</summary>{#each node.directives as directive}<h2>{directive.path}</h2><pre>{directive.content}</pre>{/each}</details>{/if}
 {#each node.children as child (child.path)}
-  <details>
-    <summary>{child.title} <a href={url(child.path)} target="_top">Open</a></summary>
-    <iframe src={url(child.path)} title={child.path} loading="lazy"></iframe>
+  <details open={!embedded}>
+    <summary>{child.title}</summary>
+    <iframe src={url(child.path) + '?embedded=1'} title={child.path} loading="lazy"></iframe>
   </details>
 {/each}
+<footer>
+  <button disabled={busy} onclick={save}>Save</button>
+  <span role="status">{message || (draft !== baseline ? 'Unsaved draft' : '')}</span>
+  {#if problem}<p role="alert">{problem}</p>{/if}
+  <details>
+    <summary>Options</summary>
+    {#if node.path}<a href="/" target="_top">Root</a>{/if}
+    <button disabled={busy} onclick={reload}>Reload saved version</button>
+    <p>Experimental: protected intent cannot be saved.</p>
+    {#each node.directives as directive}<h2>{directive.path}</h2><pre>{directive.content}</pre>{/each}
+  </details>
+</footer>
 <style>
   textarea { display: block; box-sizing: border-box; width: 100%; resize: vertical; }
   iframe { display: block; box-sizing: border-box; width: 100%; height: 32rem; }

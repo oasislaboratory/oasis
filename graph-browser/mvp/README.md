@@ -17,13 +17,13 @@ Open the local URL Vite prints (normally http://127.0.0.1:5173). On Windows Powe
 
 ## Use
 
-1. Expand Graph Browser and PMF: both stay open.
-2. Open MVP to focus `/graph-browser/mvp`.
+1. Immediate children are open by default. Deeper branches start collapsed; expand them independently.
+2. Click a window’s path to focus that objective as the outer page.
 3. Edit the inline `objective.md` textarea and **Save**. Only changes after the working-state marker can persist; protected-intent edits remain experimental drafts. For files without working state, append a newline, `<!-- oasis:working-state -->`, another newline, and your observations.
-4. Open **Git**, inspect the changes, enter a message, and **Commit objectives**.
+4. In the outer page’s footer, open **Git**, inspect the changes, enter a message, and **Commit objectives**.
 5. Reload: the saved state remains. **Push upstream** is a separate explicit operation.
 
-Existing objective content is treated conservatively as protected founder intent. Editable content starts after the exact `<!-- oasis:working-state -->` line (with surrounding newlines). Save changes only that section of `objective.md`; the server rejects protected-intent changes and cannot modify directives. Full-text drafts stay in per-tab session storage across navigation/reload; a collapsed iframe remains mounted. **Reload saved version** explicitly discards a draft after confirmation. After a conflict, copy the draft, reload the saved version, and reconcile before retrying. Storage failures are reported; in that case keep the window open and copy the draft before navigating. Creating objectives, changing protected text, moving directories, or resolving Git conflicts is currently done in your editor/terminal.
+Existing objective content is treated conservatively as protected founder intent. Editable content starts after the exact `<!-- oasis:working-state -->` line (with surrounding newlines). Save changes only that section of `objective.md`; the server rejects protected-intent changes and cannot modify directives. Full-text drafts stay in per-tab session storage across navigation/reload; a collapsed iframe remains mounted. The footer’s **Options → Reload saved version** explicitly discards a draft after confirmation. After a conflict, copy the draft, reload the saved version, and reconcile before retrying. Storage failures are reported; in that case keep the window open and copy the draft before navigating. Creating objectives, changing protected text, moving directories, or resolving Git conflicts is currently done in your editor/terminal.
 
 ## Guarantees and limits
 
