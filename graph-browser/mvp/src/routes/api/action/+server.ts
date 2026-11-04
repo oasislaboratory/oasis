@@ -8,6 +8,7 @@ export async function POST({ request, url }) {
   try {
     const data = JSON.parse(text);
     const result = await exclusive(async () => {
+      if (data.action === 'saveFull' && typeof data.path === 'string' && typeof data.content === 'string' && typeof data.revision === 'string') return repository.saveFull(data.path, data.content, data.revision);
       if (data.action === 'save' && typeof data.path === 'string' && typeof data.working === 'string' && typeof data.revision === 'string') return repository.save(data.path, data.working, data.revision);
       if (data.action === 'commit' && typeof data.message === 'string') return repository.commit(data.message);
       if (data.action === 'push') return repository.push();
