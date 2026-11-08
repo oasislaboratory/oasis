@@ -4,8 +4,11 @@
   import { invalidateAll } from '$app/navigation';
   type RoundSummary = { name: string; status: string; hypothesis: string; prediction: string; observations: string; constraints: string; comparison: string };
   let { node, embedded = false, round = null }: { node: Objective; embedded?: boolean; round?: RoundSummary | null } = $props();
-  let draft = $state(untrack(() => node.content));
-  let baseline = $state(untrack(() => node.content));
+  // Present a working-state boundary in the editor even for untouched objectives.
+  // The boundary is not written to disk until the user saves a real edit.
+  const editable = (content: string) => content.includes('\n<!-- oasis:working-state -->\n') ? content : content + '\n<!-- oasis:working-state -->\n';
+  let draft = $state(untrack(() => editable(node.content)));
+  let baseline = $state(untrack(() => editable(node.content)));
   let revision = $state(untrack(() => node.revision));
   let busy = $state(false);
   let problem = $state('');
@@ -34,7 +37,7 @@
     if (draft !== baseline && !confirm('Discard this draft and load the saved version?')) return;
     try {
       await invalidateAll();
-      draft = baseline = node.content; revision = node.revision; problem = ''; message = ''; remember();
+      draft = baseline = editable(node.content); revision = node.revision; problem = ''; message = ''; remember();
     } catch (e) { problem = (e as Error).message; }
   }
   async function save() {
