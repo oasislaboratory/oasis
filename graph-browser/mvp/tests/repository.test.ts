@@ -58,3 +58,13 @@ test('iframe pages load immediate children, each with its own descendant route',
  assert.equal(one.children[0].path,'one/grandchild');
  assert.equal((await repo.node('one/grandchild')).content,'# Grandchild\n');
 }));
+
+test('initialize working state on an objective ending in newline without editing intent', () => fixture(async repo => {
+ const before = await repo.node('one');
+ assert.equal(before.content, '# one\n');
+ const saved = await repo.saveFull('one', before.content + MARKER + 'First observation', before.revision);
+ assert.equal(saved.intent, before.intent);
+ assert.equal(saved.working, 'First observation');
+ assert.equal(saved.content, before.content + MARKER + 'First observation');
+ await assert.rejects(repo.saveFull('two', '# changed\n' + MARKER + 'bad', (await repo.node('two')).revision), /Protected intent/);
+}));
