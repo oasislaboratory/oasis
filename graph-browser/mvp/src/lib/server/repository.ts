@@ -79,10 +79,14 @@ export class Repository {
         return this.save(path, proposed.slice(direct.length), revision);
       }
     }
-    const proposed = split(content);
-    if (proposed.intent !== current.intent) throw new Error('Protected intent cannot be saved until root-user authority is implemented. Your draft has been preserved.');
-    if (!content.includes(MARKER)) {
-      if (content === current.content) return current;
+    // Browsers normalize textarea line endings to LF, whereas Git checkouts
+    // on Windows may use CRLF. Compare protected intent canonically, but
+    // always write the original protected intent bytes via save().
+    const normalized = (value: string) => value.replace(/\r\n/g, '\n');
+    const proposed = split(normalized(content));
+    if (normalized(proposed.intent) !== normalized(current.intent)) throw new Error('Protected intent cannot be saved until root-user authority is implemented. Your draft has been preserved.');
+    if (!normalized(content).includes(MARKER)) {
+      if (normalized(content) === normalized(current.content)) return current;
       throw new Error('Working-state marker required');
     }
     return this.save(path, proposed.working, revision);
