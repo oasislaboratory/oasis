@@ -59,10 +59,34 @@ export class Repository {
   async saveFull(path: string, content: string, revision: string) {
     const current = await this.node(path, false);
     if (current.revision !== revision) throw new Conflict('Objective or inherited directives changed. Your draft has been preserved.');
-    const proposed = split(content);
-    if (proposed.intent !== current.intent) throw new Error('Protected intent cannot be saved until root-user authority is implemented. Your draft has been preserved.');
-    if (!content.includes(MARKER)) {
-      if (content === current.content) return current;
+    // On first edit, the boundary is appended after the exact original bytes.
+    // A trailing newline in the original intent must not be reclassified as an edit.
+    if (!current.content.includes(MARKER)) {
+      // HTML textareas normalize Windows CRLF to LF. Compare the original intent
+      // with normalized newlines, while retaining its exact bytes on disk.
+      const normalized = (value: string) => value.replace(/\r\n/g, '\n');
+      const original = normalized(current.content);
+      const proposed = normalized(content);
+      const marker = '<!-- oasis:working-state -->\n';
+      // The editor may add a boundary newline; do not mistake it for intent.
+      const prefix = original.endsWith('\n') ? original + '\n' + marker : original + '\n' + marker;
+      if (proposed.startsWith(prefix)) {
+        return this.save(path, proposed.slice(prefix.length), revision);
+      }
+      // Also accept a marker directly after an existing final newline.
+      const direct = original + marker;
+      if (proposed.startsWith(direct)) {
+        return this.save(path, proposed.slice(direct.length), revision);
+      }
+    }
+    // Browsers normalize textarea line endings to LF, whereas Git checkouts
+    // on Windows may use CRLF. Compare protected intent canonically, but
+    // always write the original protected intent bytes via save().
+    const normalized = (value: string) => value.replace(/\r\n/g, '\n');
+    const proposed = split(normalized(content));
+    if (normalized(proposed.intent) !== normalized(current.intent)) throw new Error('Protected intent cannot be saved until root-user authority is implemented. Your draft has been preserved.');
+    if (!normalized(content).includes(MARKER)) {
+      if (normalized(content) === normalized(current.content)) return current;
       throw new Error('Working-state marker required');
     }
     return this.save(path, proposed.working, revision);
@@ -87,7 +111,10 @@ export class Repository {
       const path = p === 'objective.md' ? '' : p.slice(0, -'/objective.md'.length);
       const current = await readFile(await this.file(path, 'objective.md'), 'utf8');
       const old = (await exec('git', ['-C', this.root, 'show', `HEAD:${p}`])).stdout;
-      if (split(old).intent !== split(current).intent) throw new Error(`Protected intent changed in ${p}. Review it outside the app.`);
+      // Git's HEAD content and the Windows working tree may use different
+      // line endings. Compare normalized intent without weakening protection.
+      const normalizeIntent = (value: string) => split(value).intent.replace(/\r\n/g, '\n');
+      if (normalizeIntent(old) !== normalizeIntent(current)) throw new Error(`Protected intent changed in ${p}. Review it outside the app.`);
     }
     await this.git(['add', '--', ...files]);
     try { return await this.git(['commit', '-m', message.trim(), '--', ...files]); }
