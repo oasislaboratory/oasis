@@ -61,8 +61,23 @@ export class Repository {
     if (current.revision !== revision) throw new Conflict('Objective or inherited directives changed. Your draft has been preserved.');
     // On first edit, the boundary is appended after the exact original bytes.
     // A trailing newline in the original intent must not be reclassified as an edit.
-    if (!current.content.includes(MARKER) && content.startsWith(current.content + MARKER)) {
-      return this.save(path, content.slice((current.content + MARKER).length), revision);
+    if (!current.content.includes(MARKER)) {
+      // HTML textareas normalize Windows CRLF to LF. Compare the original intent
+      // with normalized newlines, while retaining its exact bytes on disk.
+      const normalized = (value: string) => value.replace(/\r\n/g, '\n');
+      const original = normalized(current.content);
+      const proposed = normalized(content);
+      const marker = '<!-- oasis:working-state -->\n';
+      // The editor may add a boundary newline; do not mistake it for intent.
+      const prefix = original.endsWith('\n') ? original + '\n' + marker : original + '\n' + marker;
+      if (proposed.startsWith(prefix)) {
+        return this.save(path, proposed.slice(prefix.length), revision);
+      }
+      // Also accept a marker directly after an existing final newline.
+      const direct = original + marker;
+      if (proposed.startsWith(direct)) {
+        return this.save(path, proposed.slice(direct.length), revision);
+      }
     }
     const proposed = split(content);
     if (proposed.intent !== current.intent) throw new Error('Protected intent cannot be saved until root-user authority is implemented. Your draft has been preserved.');
