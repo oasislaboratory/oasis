@@ -111,7 +111,10 @@ export class Repository {
       const path = p === 'objective.md' ? '' : p.slice(0, -'/objective.md'.length);
       const current = await readFile(await this.file(path, 'objective.md'), 'utf8');
       const old = (await exec('git', ['-C', this.root, 'show', `HEAD:${p}`])).stdout;
-      if (split(old).intent !== split(current).intent) throw new Error(`Protected intent changed in ${p}. Review it outside the app.`);
+      // Git's HEAD content and the Windows working tree may use different
+      // line endings. Compare normalized intent without weakening protection.
+      const normalizeIntent = (value: string) => split(value).intent.replace(/\r\n/g, '\n');
+      if (normalizeIntent(old) !== normalizeIntent(current)) throw new Error(`Protected intent changed in ${p}. Review it outside the app.`);
     }
     await this.git(['add', '--', ...files]);
     try { return await this.git(['commit', '-m', message.trim(), '--', ...files]); }
