@@ -16,7 +16,7 @@ let server, browser;
 try {
   await writeFile(join(root, 'objective.md'), original);
   await writeFile(join(root, 'directives.md'), 'Preserve intent.');
-  for (const path of ['one', 'two', 'one/grandchild']) {
+  for (const path of ['one', 'two', 'three', 'one/grandchild']) {
     await mkdir(join(root, path), { recursive: true });
     await writeFile(join(root, path, 'objective.md'), '# ' + path + '\nProtected.\n' + marker + 'Initial\n');
   }
@@ -29,21 +29,34 @@ try {
     await new Promise(resolve => setTimeout(resolve, 100));
   }
   browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH, args: ['--no-sandbox'] });
-  const page = await browser.newPage();
+  const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
   await page.goto(base);
+  await page.waitForLoadState("networkidle");
   const expand = async (frame, name) => frame.locator('summary').filter({ hasText: new RegExp('^' + name + '$') }).click();
-  assert.equal(await page.getByRole('link', { name: '/', exact: true }).count(), 1);
+  assert.equal(await page.getByRole('link', { name: 'Oasis/', exact: true }).count(), 1);
   assert.equal(await page.locator('iframe[title="one"]').isVisible(), true);
   assert.equal(await page.locator('iframe[title="two"]').isVisible(), true);
+  assert.equal(await page.getByText('Options', { exact: true }).count(), 0);
+  assert.equal(await page.getByText('Git', { exact: true }).count(), 0);
+  const boxes = await Promise.all(['one','two','three'].map(title => page.locator(`iframe[title="${title}"]`).boundingBox()));
+  assert.ok(boxes.every(box => box && box.width >= 288 && box.y === boxes[0].y && box.y + box.height <= 800));
+  if (process.env.SCREENSHOT_PATH) await page.screenshot({ path: process.env.SCREENSHOT_PATH });
+  await page.setViewportSize({ width: 390, height: 844 });
+  assert.ok(await page.locator('body').evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+  const narrow = await page.locator('iframe[title="two"]').boundingBox();
+  const first = await page.locator('iframe[title="one"]').boundingBox();
+  assert.ok(narrow.y > first.y);
+  await page.setViewportSize({ width: 1280, height: 800 });
   const one = page.frameLocator('iframe[title="one"]');
   const two = page.frameLocator('iframe[title="two"]');
   assert.equal(await one.locator('iframe[title="one/grandchild"]').isVisible(), false);
   assert.equal(await one.getByText('Git', { exact: true }).count(), 0);
   assert.equal(await two.getByText('Git', { exact: true }).count(), 0);
   await expand(one, 'one/grandchild');
+  await page.waitForLoadState('networkidle');
   const grand = one.frameLocator('iframe[title="one/grandchild"]');
   await grand.getByRole('textbox', { name: 'objective.md' }).waitFor();
-  assert.equal(page.frames().length, 4);
+  assert.equal(page.frames().length, 5);
   assert.equal(await page.locator('iframe[title="one"]').isVisible(), true);
   assert.equal(await page.locator('iframe[title="two"]').isVisible(), true);
   assert.equal(await one.locator('iframe[title="one/grandchild"]').isVisible(), true);
@@ -62,7 +75,7 @@ try {
   await expand(page, 'one'); await expand(page, 'one');
   assert.equal(await editor.inputValue(), draft);
   assert.equal(await two.getByRole('textbox', { name: 'objective.md' }).inputValue(), twoDraft);
-  assert.equal(page.frames().length, 4);
+  assert.equal(page.frames().length, 5);
   assert.equal(await page.locator('iframe[title="one"]').isVisible(), true);
   assert.equal(await page.locator('iframe[title="two"]').isVisible(), true);
   assert.equal(await one.locator('iframe[title="one/grandchild"]').isVisible(), true);
@@ -91,17 +104,16 @@ try {
   await page.waitForFunction(text => document.querySelector('textarea')?.value === text, draft);
   // Explicit discard/reload is needed to adopt the new revision.
   page.on('dialog', dialog => dialog.accept());
-  await page.getByText('Options', { exact: true }).click();
   await page.getByRole('button', { name: 'Reload saved version' }).click();
   await page.waitForFunction(text => document.querySelector('textarea')?.value === text, full);
   await page.getByRole('textbox', { name: 'objective.md' }).fill(full + 'Verified');
   await page.getByRole('button', { name: 'Save', exact: true }).click();
   await page.getByRole('status').filter({ hasText: 'Saved to disk' }).waitFor();
-  await page.getByText('Git', { exact: true }).click();
+  await page.goto(base + '/_workspace');
   await page.getByRole('button', { name: 'Commit objectives' }).click();
   await page.getByRole('status').filter({ hasText: 'Committed locally' }).waitFor();
   assert.match(git('show', 'HEAD:one/grandchild/objective.md'), /Verified/);
-  await page.reload();
+  await page.goto(base + '/one/grandchild');
   assert.equal(await page.getByRole('textbox', { name: 'objective.md' }).inputValue(), full + 'Verified');
   assert.equal(await readFile(join(root, 'objective.md'), 'utf8'), original);
   console.log('PASS: sibling/grandchild independence, focus, scrolling, navigation, draft recovery, protected/stale/error rejection, save/commit/reload.');
