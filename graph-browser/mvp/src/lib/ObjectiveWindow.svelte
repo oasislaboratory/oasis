@@ -2,7 +2,8 @@
   import type { Objective } from './server/repository';
   import { onMount, untrack } from 'svelte';
   import { invalidateAll } from '$app/navigation';
-  let { node, embedded = false }: { node: Objective; embedded?: boolean } = $props();
+  type RoundSummary = { name: string; status: string; hypothesis: string; prediction: string; observations: string; constraints: string; comparison: string };
+  let { node, embedded = false, round = null }: { node: Objective; embedded?: boolean; round?: RoundSummary | null } = $props();
   let draft = $state(untrack(() => node.content));
   let baseline = $state(untrack(() => node.content));
   let revision = $state(untrack(() => node.revision));
@@ -56,6 +57,18 @@
   </header>
   <textarea id="objective" aria-label="objective.md" bind:value={draft} oninput={(event) => { draft = event.currentTarget.value; message = ''; remember(); }}></textarea>
   {#if problem}<p role="alert">{problem} <button disabled={busy} onclick={reload}>Reload saved version</button></p>{/if}
+  {#if round}
+    <details class="experiment">
+      <summary>Round {round.name} · {round.status || 'Status unknown'} · uncertainty: {round.comparison === 'Pending.' ? 'unresolved' : 'review evidence'}</summary>
+      <dl>
+        <dt>Hypothesis</dt><dd>{round.hypothesis || 'Not recorded'}</dd>
+        <dt>Prediction</dt><dd>{round.prediction || 'Not recorded'}</dd>
+        <dt>Evidence</dt><dd>{round.observations || 'Not recorded'}</dd>
+        <dt>Risk / constraints</dt><dd>{round.constraints || 'Not recorded'}</dd>
+        <dt>Comparison</dt><dd>{round.comparison || 'Not evaluated'}</dd>
+      </dl>
+    </details>
+  {/if}
   <div class="children">
     {#each node.children as child (child.path)}
       <details open={!embedded}>
@@ -77,4 +90,8 @@
   summary { cursor: pointer; overflow-wrap: anywhere; }
   iframe { display: block; box-sizing: border-box; width: 100%; height: 20rem; border: 1px solid #aaa; }
   p { margin: 4px 0; overflow-wrap: anywhere; }
+  .experiment { margin-top: 6px; font-size: 12px; }
+  .experiment dl { max-height: 14rem; overflow: auto; }
+  .experiment dt { font-weight: bold; }
+  .experiment dd { margin: 0 0 5px; white-space: pre-wrap; overflow-wrap: anywhere; }
 </style>
