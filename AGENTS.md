@@ -21,3 +21,9 @@ Oasis is a living objective graph rooted in `objective.md`. Work on the objectiv
 3. Report what changed, what was tested or observed, and any unresolved conflicts or proposed directive changes.
 
 These are operating instructions, not a technical permission boundary. Until access controls are implemented, avoid treating prompt compliance as enforcement.
+
+## Scientific problem-solving rounds
+- For bounded experimental work, follow [`protocol/rounds.md`](protocol/rounds.md) and use [`protocol/round-template.md`](protocol/round-template.md).
+- Keep the problem persistent in `objective.md`; record each authorized attempt in `rounds/NNN.md` beneath that problem.
+- Freeze falsifiable predictions before execution, preserve observations and costs, and propose rather than silently enact allocation decisions.
+- Founder check-in prompts are in [`protocol/daily-checkins.md`](protocol/daily-checkins.md).
