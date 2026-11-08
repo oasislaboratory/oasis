@@ -59,6 +59,11 @@ export class Repository {
   async saveFull(path: string, content: string, revision: string) {
     const current = await this.node(path, false);
     if (current.revision !== revision) throw new Conflict('Objective or inherited directives changed. Your draft has been preserved.');
+    // On first edit, the boundary is appended after the exact original bytes.
+    // A trailing newline in the original intent must not be reclassified as an edit.
+    if (!current.content.includes(MARKER) && content.startsWith(current.content + MARKER)) {
+      return this.save(path, content.slice((current.content + MARKER).length), revision);
+    }
     const proposed = split(content);
     if (proposed.intent !== current.intent) throw new Error('Protected intent cannot be saved until root-user authority is implemented. Your draft has been preserved.');
     if (!content.includes(MARKER)) {
