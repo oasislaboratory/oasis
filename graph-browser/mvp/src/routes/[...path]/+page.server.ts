@@ -4,10 +4,9 @@ import { readdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 function section(markdown: string, name: string): string {
-  const heading = new RegExp('^## ' + name.replace(/[.*+?^$()|[\]{}]/g, '\\$&') + '\\s*$', 'm');
-  const match = heading.exec(markdown);
-  if (!match) return '';
-  return markdown.slice(match.index + match[0].length).split(/^## /m)[0].trim();
+  const sections = markdown.split(/^## /m).slice(1);
+  const match = sections.find(value => value.split('\n', 1)[0].trim() === name);
+  return match ? match.slice(match.indexOf('\n') + 1).trim() : '';
 }
 async function latestRound(path: string) {
   const directory = join(await repository.directory(path), 'rounds');
