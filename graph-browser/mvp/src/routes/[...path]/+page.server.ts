@@ -1,7 +1,10 @@
 import { error } from '@sveltejs/kit';
 import { repository } from '$lib/server/repository';
+import { filesystemGraph, objectiveView } from '$lib/server/objective-graph';
 import { readdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
+
+const graph = filesystemGraph(repository);
 
 function section(markdown: string, name: string): string {
   const sections = markdown.split(/^## /m).slice(1);
@@ -30,6 +33,6 @@ export async function load({ params, url }) {
   const embedded = url.searchParams.get('embedded') === '1';
   try {
     const path = params.path || '';
-    return { objective: await repository.node(path), embedded, round: await latestRound(path) };
+    return { objective: objectiveView(await graph.read(path)), embedded, round: await latestRound(path) };
   } catch (e) { error(404, (e as Error).message); }
 }

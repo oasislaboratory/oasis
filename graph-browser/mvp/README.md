@@ -67,3 +67,29 @@ Set `HOST=127.0.0.1` and `ORIGIN=http://127.0.0.1:3000` using your shell's envir
 
 ## Round 001 experiment (unverified branch)
 The latest `rounds/NNN.md` under each objective appears as a compact, collapsed experimental-state disclosure. It shows the recorded hypothesis, frozen prediction, observations, constraints, and comparison. These are read-only; editing round records is not implemented. Uncertainty is explicitly unresolved while a round comparison is pending; no numeric entropy or risk score is invented. PR #7's tiled view and separate `/_workspace` have been reconciled onto the Round 001 branch. Run `npm run check`, `npm test`, `npm run build`, and the optional Chromium acceptance test before accepting the reconciliation. These commands have **not** been run against this branch.
+
+## Graph read boundary (Round 003)
+
+The objective page now reads `filesystemGraph(repository)` and applies
+`objectiveView` before rendering the unchanged editor. `src/lib/graph.ts` defines
+`GraphSource<Value>.read(id)`: a bounded neighborhood containing an identity
+entry and related entries with typed relationships. IDs are opaque strings;
+equal source/target IDs denote a diagonal identity. Relationships are arrays,
+so parallel types and cycles do not require a tree or automatic recursion.
+Values can contain nested data without assigning it evaluation semantics.
+
+The filesystem adapter uses repository paths as IDs, `oasis:objective` identities,
+and `filesystem:contains` relationships. It preserves immediate-child ordering,
+Markdown, revision hashes, inherited directives, and stable URLs. The Oasis OS
+projection deliberately renders only containment as child objective windows.
+Other relationships, including permission descriptions, grant no write authority.
+All saves/commits still use the existing Repository/API checks.
+
+This is a read seam, not a Graph Lang specification or generic graph renderer.
+The existing editor and round-summary reader remain objective/filesystem-specific.
+The non-filesystem adjacency fixture in `tests/graph.test.ts` proves interface
+expressiveness, not Graph Lang execution or UI support for arbitrary values.
+Future work can test a read-only generic entry view against that fixture before
+introducing storage, evaluation, or generalized editing.
+
+Evidence and frozen prediction: [Round 003](../../technology/rounds/003.md).
