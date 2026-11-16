@@ -1,0 +1,16 @@
+{
+  "sha256": "21e35069023217c2912ffe22bf6500ea7882e8c653fe55f96372a407d66c1563",
+  "files": [
+    "DESIGN.md",
+    "README.md",
+    "acceptance.mjs",
+    "controller.mjs",
+    "controller.test.mjs",
+    "harness.mjs",
+    "harness.test.mjs",
+    "manifest.json",
+    "prepare.mjs",
+    "snapshot.json"
+  ],
+  "status": "candidate freeze; human reference review and runtime pinning pending"
+}

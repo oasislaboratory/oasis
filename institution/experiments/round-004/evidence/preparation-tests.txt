@@ -1,0 +1,20 @@
+✔ controller rejects missing approval and unpinned runtime (7.765284ms)
+✔ controller reserves before request and reports verified outcomes with billing (7.602342ms)
+✔ controller refuses overspend before invocation and globally stops on bad billing (5.919786ms)
+✔ controller deadline cancels in-flight request and records unresolved cost (12.081522ms)
+✔ assignment is six unique pairs, balanced first condition, immutable baseline (1.675735ms)
+✔ broker rejects scope escalation and path aliases without host writes (1.378893ms)
+✔ protected fixture rejects prefix changes and allows scoped working edit (2.234839ms)
+✔ fresh runs cannot observe sibling changes and unknown/prototype files cannot be read (0.524621ms)
+✔ time, call and byte caps fail closed (2.959427ms)
+✔ both conditions share requirements/scope, B adds ancestry and dependencies only (14.496899ms)
+✔ acceptance rejects incorrect answers and measures denied attempts separately (0.841123ms)
+✔ precision/recall use unique path sets, missing and empty values explicit (2.212485ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 201.67748
