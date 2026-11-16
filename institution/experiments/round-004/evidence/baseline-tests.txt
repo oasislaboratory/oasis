@@ -1,0 +1,29 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> test
+> npm --prefix graph-browser/mvp test
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> test
+> node --import tsx --test tests/*.test.ts
+
+✔ filesystem graph preserves page models, bounds depth, and retains save revisions (133.610743ms)
+✔ graph source supports non-objective adjacency, parallel types, cycles, and nested values (0.504972ms)
+✔ expand two branches, save working state, commit, reload; preserve intent (111.626694ms)
+✔ reject stale objective and directive revisions (32.289232ms)
+✔ reject traversal, symlinks, injected marker, and protected intent commits (52.848063ms)
+✔ refuse unrelated staged changes and leave other unstaged files out of commits (64.246659ms)
+✔ strip script HTML and unsafe URLs from rendered Markdown (27.525012ms)
+✔ relative objective links resolve from each embedded node (22.513662ms)
+✔ full-text experiment preserves protected intent and rejects stale writes (58.597421ms)
+✔ iframe pages load immediate children, each with its own descendant route (26.861484ms)
+✔ initialize working state on an objective ending in newline without editing intent (41.764277ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 755.834016
